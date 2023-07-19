@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container border">
+    <div class="container">
+        <br>
+        <div class="container">
+            <img src="{% static 'images/logo.png' %}" alt="logo">
+        </div>
+        <div class="container">
+            <div id="background" class="container fw-bold">
+                <span>
+                    <h1 class="display-5">{{notice.title}}</h1>
+                </span>
+                <span>Added on {{notice.created}} </span>
+                <hr>
+            </div>
+            <div class="container">
+                <p>{{notice.intro}}</p>
+                {% if notice.img.url is not None %}
+                    <img class="img-fluid" style="width: 40em;" src="{{notice.img.url}}" alt="an image">
+                    <br>
+                {% endif %}
+                <br>
+                <p>{{notice.main_body}}</p>
+                <p>{{notice.outro}}</p>
+            </div>
+            <div class="container">
+                <a class="btn btn-primary" href="{% url 'notices' %}">Back</a>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+{% endblock content %}
+

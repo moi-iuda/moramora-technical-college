@@ -1,0 +1,55 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg" style="background-color: #14542A;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img style="width:3rem; border-radius:50%;" src="{% static 'images/logo.png' %}" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a id="navbar-links" class="nav-link active" aria-current="page" aria-current="page" href="{% url 'home' %}"><i class="fa-solid fa-house"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a id="navbar-links" class="nav-link" href="{% url 'acadcalendar_fees_contact' %}"><i class="fa-regular fa-calendar-check"></i> Calendar & Fees</a>
+                </li>
+                <li class="nav-item">
+                    <a id="navbar-links" class="nav-link" href="{% url 'departments' %}"><i class="fa-solid fa-building-user"></i> Departments</a>
+                </li>
+                <li class="nav-item">
+                    <a id="navbar-links" class="nav-link" href="{% url 'programmes' %}"><i class="fa-solid fa-award"></i> Programmes</a>
+                </li>
+                <li class="nav-item">
+                    <a id="navbar-links" class="nav-link" href="{% url 'trades' %}"><i class="fa-solid fa-hammer"></i> Trades</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" style="color: #FFF200;">
+                            <i class="fa-solid fa-plus"></i> Add
+                        </a>
+                        <ul id="background" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'add_department' %}"><i class="fa-solid fa-plus"></i> Department</a></li>
+                            <li><a class="dropdown-item" href="{% url 'add_academic_calendar' %}"><i class="fa-solid fa-plus"></i> Academic Calendar</a></li>
+                            <li><a class="dropdown-item" href="{% url 'add_contact' %}"><i class="fa-solid fa-plus"></i> Contact</a></li>
+                            <li><a class="dropdown-item" href="{% url 'add_institution' %}"><i class="fa-solid fa-plus"></i> Institution</a></li>
+                            <li><a class="dropdown-item" href="{% url 'add_latest_update' %}"><i class="fa-solid fa-plus"></i> Latest Update</a></li>
+                            <li><a class="dropdown-item" href="{% url 'add_notice' %}"><i class="fa-solid fa-plus"></i> Notice</a></li>
+                            <li><a class="dropdown-item" href="{% url 'add_programme' %}"><i class="fa-solid fa-plus"></i> Programme</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a id="navbar-links" class="nav-link" href="{% url 'logout_user' %}"><i class="fa-solid fa-right-to-bracket"></i> Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a id="navbar-links" class="nav-link" href="{% url 'login_user' %}"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

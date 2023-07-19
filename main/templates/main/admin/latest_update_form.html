@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1>Add Latest Update</h1>
+    <form class="col-md-6" action="" method="POST">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <input type="Submit">
+        <a href="{% url 'latest_updates' %}">Back</a>
+    </form>
+{% endblock content %}  

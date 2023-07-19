@@ -1,0 +1,19 @@
+body{
+    font-family: 'roboto'
+}
+
+h1{
+    font-family: 'Allura'
+}
+
+h1, #headings, .container{
+    color: #14542A;
+}
+
+#navbar-links{
+    color: #FFF200;
+}
+
+#background{
+    background-color: #E9F7EF;
+}

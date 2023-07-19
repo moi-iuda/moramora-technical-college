@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container border">
+    <br>
+    <div class="container text-center">
+        <h1 class="display-1">Latest Updates</h1>
+        <p>Read the latest development from this page</p>
+    </div>
+    <div class="row justify-content-around">
+        {% for latest_update in latest_updates %}
+            <div id="background" class="col-lg-5 border m-3 p-3 rounded text-lg-center">
+                <span class="fs-5">{{latest_update.title|truncatewords:":50"}}...
+                    <a href="{% url 'latest_update' latest_update.id %}">Read More</a></span><br><br>
+                <span class="fs-5">Add on {{latest_update.created}}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

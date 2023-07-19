@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container border">
+    <div class="container border">
+        <br>
+        <div class="container">
+            <div id="background" class="container fw-bold">
+                <span>
+                    <h1 class="display-5">{{latest_update.title}}</h1>
+                </span>
+                <span>Added on {{latest_update.created}} </span>
+                <hr>
+            </div>
+            <div class="container">
+                <p>{{latest_update.intro}}</p>
+                {% if latest_update.img.url is not None %}
+                    <img class="img-fluid" style="width: 40em;" src="{{latest_update.img.url}}" alt="an image">
+                    <br>
+                {% else %}
+                    <p>NO PICTURE TO DISPLAY</p>
+                {% endif %}
+                <br>
+                <p>{{latest_update.main_body}}</p>
+                <p>{{latest_update.outro}}</p>
+            </div>
+            <div class="container">
+                <a class="btn btn-primary" href="{% url 'latest_updates' %}">Back</a>
+            </div>
+        </div>
+        <br>
+    
+    </div>
+</div>
+{% endblock content %}
