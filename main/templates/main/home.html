@@ -2,49 +2,67 @@
 {% load static %}
 {% block content %}
     <div class="container border">
-        {% if institution is not None %}
-            <div class="row text-center p-5" style="background-color:#7DCEA0;">
-                <img class="m-auto" style="width: 20rem; border-radius: 50%;" src="{% static 'images/logo.png' %}" alt="logo">  
-                <h1 class="fs-1" style="color: #145A32">Welcome to</h1>
-                <h1 class="display-1 fw-bold m-auto py-4" style="color: #FFF200; font-size: 6rem;">{{ institution.inst_name }}</h1>
-                <h1 class="fs-1" style="color: #145A32">website</h1>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 text-center py-5">
-                    <h1 class="fs-1">About Us</h1>
-                    <p class="fs-5">{{institution.about}}</p>
-                </div>
-                <div class="col-lg-6 py-5 m-auto">
-                    <img class="img-fluid rounded" src="{% static 'images/image1.jpg' %}" alt="a picture">
-                </div>
-            </div>
-            <div class="col">
+        {% if request.user.is_authenticated %}
+            {% if institution is not None %}
                 <div class="row text-center p-5" style="background-color:#7DCEA0;">
-                    <h1 class="fs-1" style="color: #FFF200;">Our Vision</h1>
-                    <p class="fs-5">{{institution.vision}}</p>
+                    <img class="m-auto" style="width: 20rem; border-radius: 50%;" src="{% static 'images/logo.png' %}" alt="logo">  
+                    <h1 class="fs-1" style="color: #145A32">Welcome to</h1>
+                    {% if institution.inst_name %}
+                    <h1 class="display-1 fw-bold m-auto py-4" style="color: #FFF200; font-size: 6rem;">{{ institution.inst_name }}</h1>
+                    {% else %}
+                        <p><i>No information to display</i></p>
+                    {% endif %}
+                    <h1 class="fs-1" style="color: #145A32">website</h1>
                 </div>
-                <div class="row text-center p-5">
-                    <h1 class="fs-1" >Our Mission</h1>
-                    <p class="fs-5">{{institution.mission}}</p>
+                <div class="row">
+                    <div class="col-lg-6 text-center py-5">
+                        <h1 class="fs-1">About Us</h1>
+                        {% if institution.about %}
+                        <p class="fs-5">{{institution.about}}</p>
+                        {% else %}
+                            <p><i>No information to display</i></p>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-6 py-5 m-auto">
+                        <img class="img-fluid rounded" src="{{institution.img.url}}" alt="a picture">
+                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-around">
-                <div class="col-md-3 border text-center p-3 m-2">
-                    <a href="{% url 'latest_updates' %}" id="headings">
-                        <h1 class="fs-2 m-auto">Read Updates</h1>
-                    </a>
+                <div class="col">
+                    <div class="row text-center p-5" style="background-color:#7DCEA0;">
+                        <h1 class="fs-1" style="color: #FFF200;">Our Vision</h1>
+                        {% if institution.vision %}
+                            <p class="fs-5">{{institution.vision}}</p>
+                        {% else %}
+                            <p><i>No vision to display</i></p>
+                        {% endif %}
+                    </div>
+                    <div class="row text-center p-5">
+                        <h1 class="fs-1" >Our Mission</h1>
+                        {% if institution.mission %}
+                            <p class="fs-5">{{institution.mission}}</p>
+                        {% else %}
+                            <p><i>No mission to display</i></p>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="col-md-3 border text-center p-3 m-2">
-                    <a href="{% url 'notices' %}" id="headings">
-                        <h1 class="fs-2 m-auto">Read Notices</h1>
-                    </a>
+                <div class="row justify-content-around">
+                    <div class="col-md-3 border text-center p-3 m-2">
+                        <a href="{% url 'latest_updates' %}" id="headings">
+                            <h1 class="fs-2 m-auto">Read Updates</h1>
+                        </a>
+                    </div>
+                    <div class="col-md-3 border text-center p-3 m-2">
+                        <a href="{% url 'notices' %}" id="headings">
+                            <h1 class="fs-2 m-auto">Read Notices</h1>
+                        </a>
+                    </div>
+                    <div class="col-md-3 border text-center p-3 m-2">
+                        <a href="{% url 'trades' %}" id="headings">
+                            <h1 class="fs-2 m-auto">View Images</h1>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-md-3 border text-center p-3 m-2">
-                    <a href="{% url 'trades' %}" id="headings">
-                        <h1 class="fs-2 m-auto">View Images</h1>
-                    </a>
-                </div>
-            </div>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock content %}

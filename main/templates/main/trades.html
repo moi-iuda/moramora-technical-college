@@ -8,12 +8,16 @@
                 <p>View our  picture collections according the Trades we have</p>
             </div>
             {% for trade in trades %}
+                {% if trade.is_active %}
                 <div id="background" class="col-md-5 border m-3 p-3 rounded">
                     <span class="fs-4" id="headings">{{trade.trade}}</span><br>
                     <span>
                         <a class="btn btn-outline-primary" href="{% url 'trade_images' trade.id %}">View</a>
                     </span>
                 </div>
+                {% else %}
+                    <p class="text-center"><i>No trades to display</i></p>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

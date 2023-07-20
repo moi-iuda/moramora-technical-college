@@ -4,8 +4,13 @@ from ckeditor.fields import RichTextField
 
 
 class Institution(models.Model):
+    """
+    This stores information about the college
+    """
     inst_name = models.CharField(max_length=255)
     about = RichTextField(max_length=700)
+    img = models.ImageField(upload_to='img_lib/',
+                            default='img_lib/default1.png')
     vision = RichTextField(max_length=350)
     mission = RichTextField(max_length=350)
     is_active = models.BooleanField()
@@ -19,6 +24,9 @@ class Institution(models.Model):
 
 
 class Contact(models.Model):
+    """
+    This stores information about the contact person for the college
+    """
     inst = models.ForeignKey(Institution, on_delete=models.CASCADE)
     contact_person = models.CharField(max_length=255)
     postal_address = models.CharField(max_length=255)
@@ -37,6 +45,9 @@ class Contact(models.Model):
 
 
 class PngNqf(models.Model):
+    """ 
+    This lists all the levels of PNG National Qualification Framework
+    """
     nqf_level = models.CharField(max_length=10)
     qualification = models.CharField(max_length=255)
 
@@ -48,15 +59,22 @@ class PngNqf(models.Model):
 
 
 class Department(models.Model):
+    """ 
+    This stores information about the respective departments in the college
+    """
     dept = models.CharField(
         max_length=255, default='Department of ', unique=True)
     desc = RichTextField(max_length=1500)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.dept
 
 
 class Programme(models.Model):
+    """ 
+    This stores information on the programmes offered by the college
+    """
     dept = models.ForeignKey(Department, on_delete=models.CASCADE)
     inst = models.ForeignKey(Institution, on_delete=models.CASCADE)
     prog_name = models.CharField(
@@ -80,6 +98,10 @@ class Programme(models.Model):
 
 
 class Notice(models.Model):
+    """ 
+    This provides a space for the college to post Notices for the students and public
+    This is based on programmes
+    """
     prog = models.ForeignKey(Programme, on_delete=models.CASCADE)
     title = models.CharField(max_length=700, unique=True)
     intro = RichTextField(max_length=700)
@@ -96,6 +118,9 @@ class Notice(models.Model):
 
 
 class LatestUpdate(models.Model):
+    """ 
+    Provides the latest news/update/development in the college
+    """
     inst = models.ForeignKey(Institution, on_delete=models.CASCADE)
     title = models.CharField(max_length=700, unique=True)
     intro = RichTextField(max_length=700)
@@ -115,6 +140,9 @@ class LatestUpdate(models.Model):
 
 
 class FeeStructure(models.Model):
+    """ 
+    This section provides/stores information on the fee structure of the college
+    """
     year = models.IntegerField(unique=True)
     desc = RichTextField(max_length=700)
     hecas_resid = models.FloatField()
@@ -130,6 +158,9 @@ class FeeStructure(models.Model):
 
 
 class AcademicCalendar(models.Model):
+    """
+    This section will store information on the academic calendar of the college
+    """
     year = models.IntegerField()
     note = RichTextField(max_length=500)
     created = models.DateTimeField(auto_now_add=True)
@@ -152,12 +183,16 @@ class AcademicCalendar(models.Model):
 
 class Trade(models.Model):
     trade = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.trade
 
 
 class ImageLibrary(models.Model):
+    """
+    This will stores images of the college
+    """
     trade = models.ForeignKey(Trade, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     img = models.ImageField(upload_to='img_lib/',

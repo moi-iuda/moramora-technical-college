@@ -4,22 +4,26 @@
     <div class="container border">
         <br>
         <h1 class="display-1">Trade - {{trade.trade}}</h1>
-        <div>
-            <a class="btn btn-outline-primary" href="{% url 'trades' %}">Back</a>
-        </div>
         <div class="row">
-            {% for image in images %}
-                    {% if image.is_active %}
-                        <div class="card m-3" style="width: 25rem;">
-                            <img class="card-img-top" src="{{image.img.url}}" alt="Card image cap">
-                            <div id="background" class="card-body">
-                                <h1 class="card-text">{{image.title}}</h1>
-                                <p class="card-text">{{image.desc}}</p>
-                                <p class="card-text">{{image.created}}</p>
+            {% if images %}
+                {% for image in images %}
+                        {% if image.is_active %}
+                            <div class="card m-3" style="width: 25rem;">
+                                <img class="card-img-top" src="{{image.img.url}}" alt="Card image cap">
+                                <div id="background" class="card-body">
+                                    <h1 class="card-text">{{image.title}}</h1>
+                                    <p class="card-text">{{image.desc}}</p>
+                                    <p class="card-text">{{image.created}}</p>
+                                </div>
                             </div>
-                        </div>
-                    {% endif %}
-            {% endfor %}
+                        {% endif %}
+                {% endfor %}
+            {% else %}
+                <p><i>No trades and images to display</i></p>
+            {% endif %}
+            <div>
+                <a class="btn btn-outline-primary" href="{% url 'trades' %}">Back</a>
+            </div>
         </div>
         <br>
     </div>

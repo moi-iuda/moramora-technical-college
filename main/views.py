@@ -37,55 +37,71 @@ def logout_user(request):
     return redirect('login_user')
 
 
-def account(request):
-    context = {}
-    return render(request, 'main/account.html', context)
-
-
 def home(request):
-    institution = Institution.objects.all()[0]
+    """ 
+    This view will act as the home. It extracts data from the Institution model
+    """
+    institution = Institution.objects.all()
     context = {'institution': institution}
     return render(request, 'main/home.html', context)
 
 
 def departments(request):
+    """ 
+    Retrieves all the departments in the Department model
+    """
     departments = Department.objects.all()
     context = {'departments': departments}
     return render(request, 'main/departments.html', context)
 
 
 def department(request, pk):
+    """ 
+    This displays the department based when the user click on the view button
+    """
     department = Department.objects.get(id=pk)
     context = {'department': department}
     return render(request, 'main/department.html', context)
 
 
 def programmes(request):
-    programmes = Programme.objects.all()
+    """ 
+    Retrieves all the programmes from the programme model
+    """
+    programmes = Programme.objects.all()[:10]
     context = {'programmes': programmes}
     return render(request, 'main/programmes.html', context)
 
 
 def programme(request, pk):
+    """ 
+    Displays the programme if the user click on the view button
+    """
     programme = Programme.objects.get(id=pk)
     context = {'programme': programme}
     return render(request, 'main/programme.html', context)
 
 
 def latest_updates(request):
-    latest_updates = LatestUpdate.objects.all()
+    """
+    Lists all the new update from the college
+    """
+    latest_updates = LatestUpdate.objects.all()[:10]
     context = {'latest_updates': latest_updates}
     return render(request, 'main/latest_updates.html', context)
 
 
 def latest_update(request, pk):
+    """ 
+    Displays single update if user presses the view button
+    """
     latest_update = LatestUpdate.objects.get(id=pk)
     context = {'latest_update': latest_update}
     return render(request, 'main/latest_update.html', context)
 
 
 def notices(request):
-    notices = Notice.objects.all()
+    notices = Notice.objects.all()[:10]
     context = {'notices': notices}
     return render(request, 'main/notices.html', context)
 
@@ -97,10 +113,10 @@ def notice(request, pk):
 
 
 def acadcalendar_fees_contact(request):
-    acad_cal = AcademicCalendar.objects.all()[0]
-    fees = FeeStructure.objects.all()[0]
+    acad_cal = AcademicCalendar.objects.first()
+    fee = FeeStructure.objects.first()
     contacts = Contact.objects.all()
-    context = {'acad_cal': acad_cal, 'fees': fees, 'contacts': contacts}
+    context = {'acad_cal': acad_cal, 'fee': fee, 'contacts': contacts}
     return render(request, 'main/acadcalendar_fees_contact.html', context)
 
 
@@ -137,6 +153,9 @@ def add_academic_calendar(request):
 
 @login_required(login_url='login_user')
 def add_department(request):
+    """ 
+    Adds a new department
+    """
     form = DepartmentForm()
     if request.method == "POST":
         form = DepartmentForm(request.POST)
@@ -149,6 +168,9 @@ def add_department(request):
 
 @login_required(login_url='login_user')
 def add_contact(request):
+    """ 
+    Adds a new contact
+    """
     form = ContactForm()
     if request.method == "POST":
         form = ContactForm(request.POST)
@@ -161,6 +183,9 @@ def add_contact(request):
 
 @login_required(login_url='login_user')
 def add_institution(request):
+    """ 
+    Adds a new institution
+    """
     form = InstitutionForm()
     if request.method == "POST":
         form = InstitutionForm(request.POST)
@@ -173,6 +198,9 @@ def add_institution(request):
 
 @login_required(login_url='login_user')
 def add_latest_update(request):
+    """ 
+    Adds a new latest update
+    """
     form = LatestUpdateForm()
     if request.method == "POST":
         form = LatestUpdateForm(request.POST)
@@ -185,6 +213,9 @@ def add_latest_update(request):
 
 @login_required(login_url='login_user')
 def add_notice(request):
+    """ 
+    Adds a new notice
+    """
     form = NoticeForm()
     if request.method == "POST":
         form = NoticeForm(request.POST)
@@ -197,6 +228,9 @@ def add_notice(request):
 
 @login_required(login_url='login_user')
 def add_programme(request):
+    """ 
+    Adds a new programme
+    """
     form = ProgrammeForm()
     if request.method == "POST":
         form = ProgrammeForm(request.POST)
@@ -209,6 +243,9 @@ def add_programme(request):
 
 @login_required(login_url='login_user')
 def add_trade(request):
+    """ 
+    Adds a new trade
+    """
     form = TradeForm()
     if request.method == "POST":
         form = TradeForm(request.POST)
@@ -221,6 +258,9 @@ def add_trade(request):
 
 @login_required(login_url='login_user')
 def update_academic_calendar(request, pk):
+    """ 
+    Updates the existing information in academic calendar model
+    """
     academic_calendar = AcademicCalendar.objects.get(id=pk)
     form = AcademicCalendarForm(instance=academic_calendar)
     if request.method == "POST":
@@ -234,6 +274,9 @@ def update_academic_calendar(request, pk):
 
 @login_required(login_url='login_user')
 def update_department(request, pk):
+    """ 
+    Updates the existing information of a department
+    """
     department = Department.objects.get(id=pk)
     form = DepartmentForm(instance=department)
     if request.method == "POST":
@@ -247,6 +290,9 @@ def update_department(request, pk):
 
 @login_required(login_url='login_user')
 def update_contact(request, pk):
+    """ 
+    Updates the existing information of a contact
+    """
     contact = Contact.objects.get(id=pk)
     form = ContactForm(instance=contact)
     if request.method == "POST":
@@ -260,6 +306,9 @@ def update_contact(request, pk):
 
 @login_required(login_url='login_user')
 def update_institution(request, pk):
+    """ 
+    Updates the existing information of an institution
+    """
     institution = Institution.object.get(id=pk)
     form = InstitutionForm(instance=institution)
     if request.method == "POST":
@@ -273,6 +322,9 @@ def update_institution(request, pk):
 
 @login_required(login_url='login_user')
 def update_latest_update(request, pk):
+    """ 
+    Updates the existing information of a latest update
+    """
     latest_update = LatestUpdate.objects.get(id=pk)
     form = LatestUpdateForm(instance=latest_update)
     if request.method == "POST":
@@ -286,6 +338,9 @@ def update_latest_update(request, pk):
 
 @login_required(login_url='login_user')
 def update_notice(request, pk):
+    """ 
+    Updates the existing information of a notice
+    """
     notice = Notice.objects.get(id=pk)
     form = NoticeForm(instance=notice)
     if request.method == "POST":
@@ -299,6 +354,9 @@ def update_notice(request, pk):
 
 @login_required(login_url='login_user')
 def update_programme(request, pk):
+    """ 
+    Updates the existing information of a programme
+    """
     programme = Programme.objects.get(id=pk)
     form = ProgrammeForm(instance=programme)
     if request.method == "POST":
@@ -312,6 +370,9 @@ def update_programme(request, pk):
 
 @login_required(login_url='login_user')
 def update_trade(request, pk):
+    """ 
+    Updates the existing information of a trade
+    """
     trade = Trade.objects.get(id=pk)
     form = TradeForm()
     if request.method == "POST":

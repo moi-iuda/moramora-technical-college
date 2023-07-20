@@ -20,8 +20,6 @@ urlpatterns = [
          views.trades, name='trades'),
     path('trade_images/<str:pk>/',
          views.trade_images, name='trade_images'),
-    path('account/',
-         views.account, name='account'),
     path('add_department/',
          views.add_department, name='add_department'),
     path('add_academic_calendar/',

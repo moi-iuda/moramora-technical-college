@@ -9,100 +9,119 @@
             <img src="{% static 'images/logo.png' %}" alt="logo">
         </div>
         <h1 class="display-1 text-center">Our Academic Calendar for {{acad_cal.year}}</h1>
-        <table class="table table-striped w-75" style="color: #145A32">
-            <tr>
-                <th>Activity</th>
-                <th>Date</th>
-            </tr>
-            <tr>
-                <td>Semester One Registration</td>
-                <td>Starts on {{acad_cal.sem_one_reg_begins}} and ends on {{acad_cal.sem_one_reg_ends}} </td>
-            </tr>
-            <tr>
-                <td>Semester One Classes</td>
-                <td>Starts on {{acad_cal.sem_one_cls_begins}} and ends on {{acad_cal.sem_one_cls_ends}} </td>
-            </tr>
-            <tr>
-                <td>Semester One Break</td>
-                <td>Starts on {{acad_cal.sem_one_brk_begins}} and ends on {{acad_cal.sem_one_brk_ends}} </td>
-            </tr>
-            <tr>
-                <td>Semester Two Registration</td>
-                <td>Starts on {{acad_cal.sem_two_reg_begins}} and ends on {{acad_cal.sem_two_reg_ends}} </td>
-            </tr>
-            <tr>
-                <td>Semester Two Classes</td>
-                <td>Starts on {{acad_cal.sem_two_cls_begins}} and ends on {{acad_cal.sem_two_cls_ends}} </td>
-            </tr>
-        </table>
+        {% if acad_cal %}
+            {% if acad_cal.is_active %}
+                <table class="table table-striped w-75" style="color: #145A32">
+                    <tr>
+                        <th>Activity</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr>
+                        <td>Semester One Registration</td>
+                        <td>Starts on {{acad_cal.sem_one_reg_begins}} and ends on {{acad_cal.sem_one_reg_ends}} </td>
+                    </tr>
+                    <tr>
+                        <td>Semester One Classes</td>
+                        <td>Starts on {{acad_cal.sem_one_cls_begins}} and ends on {{acad_cal.sem_one_cls_ends}} </td>
+                    </tr>
+                    <tr>
+                        <td>Semester One Break</td>
+                        <td>Starts on {{acad_cal.sem_one_brk_begins}} and ends on {{acad_cal.sem_one_brk_ends}} </td>
+                    </tr>
+                    <tr>
+                        <td>Semester Two Registration</td>
+                        <td>Starts on {{acad_cal.sem_two_reg_begins}} and ends on {{acad_cal.sem_two_reg_ends}} </td>
+                    </tr>
+                    <tr>
+                        <td>Semester Two Classes</td>
+                        <td>Starts on {{acad_cal.sem_two_cls_begins}} and ends on {{acad_cal.sem_two_cls_ends}} </td>
+                    </tr>
+                </table>
+            {% endif %}
+        {% else %}
+            <p class="text-center"><i>No information to display</i></p>
+        {% endif %}
     </div>
     <br>
 
     <div class="row justify-content-center">
-        <h1 class="display-1 text-center" >Our Fees Structure for {{acad_cal.year}}</h1>
-        <table class="table table-striped w-75" style="color: #145A32">
-            <tr>
-                <th>Student Type</th>
-                <th>Amount</th>
-            </tr>
-            <tr>
-                <td>HECAS Residence</td>
-                <td>K{{fees.hecas_resid|floatformat:2}}</td>
-            </tr>
-            <tr>
-                <td>HECAS Non-Residence</td>
-                <td>K{{fees.hecas_non_resid|floatformat:2}}</td>
-            </tr>
-            <tr>
-                <td>Self-Sponsor Residence</td>
-                <td>K{{fees.ss_resid|floatformat:2}}</td>
-            </tr>
-            <tr>
-                <td>Self-Sponsor Non-Residence</td>
-                <td>K{{fees.ss_non_resid|floatformat:2}}</td>
-            </tr>
-        </table>
+        <h1 class="display-1 text-center" >Our Fees Structure for {{fees.year}}</h1>
+        {% if fees %}
+            {% if fees.is_active %}
+                <table class="table table-striped w-75" style="color: #145A32">
+                    <tr>
+                        <th>Student Type</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr>
+                        <td>HECAS Residence</td>
+                        <td>K{{fees.hecas_resid|floatformat:2}}</td>
+                    </tr>
+                    <tr>
+                        <td>HECAS Non-Residence</td>
+                        <td>K{{fees.hecas_non_resid|floatformat:2}}</td>
+                    </tr>
+                    <tr>
+                        <td>Self-Sponsor Residence</td>
+                        <td>K{{fees.ss_resid|floatformat:2}}</td>
+                    </tr>
+                    <tr>
+                        <td>Self-Sponsor Non-Residence</td>
+                        <td>K{{fees.ss_non_resid|floatformat:2}}</td>
+                    </tr>
+                </table>
+            {% endif %}
+        {% else %}
+                <p class="text-center"><i>No information to display</i></p>
+        {% endif %}
     </div>
     <br>
 
     <div class="row justify-content-center">
         <h1 class="display-1 text-center">Our Contacts</h1>
-        <table class="table table-striped w-75" style="color: #145A32">
-            <tr>
-                <th>Name</th>
-                <th>Contact Details</th>
-            </tr>
-            {% for contact in contacts %}
-                <tr>
-                    <td>Contact Person</td>
-                    <td>{{contact.contact_person}}</td>
-                </tr>
-                <tr>
-                    <td>Postal Address</td>
-                    <td>{{contact.postal_address}}</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>{{contact.email}}</td>
-                </tr>
-                <tr>
-                    <td>Landline</td>
-                    <td>{{contact.landline}}</td>
-                </tr>
-                <tr>
-                    <td>Digicel</td>
-                    <td>{{contact.digicel}}</td>
-                </tr>
-                <tr>
-                    <td>Telikom</td>
-                    <td>{{contact.telikom}}</td>
-                </tr>
-                <tr>
-                    <td>Vodaphone</td>
-                    <td>{{contact.vodaphone}}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        {% if contacts %}
+            {% if contacts.is_active %}
+                <table class="table table-striped w-75" style="color: #145A32">
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact Details</th>
+                    </tr>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td>Contact Person</td>
+                            <td>{{contact.contact_person}}</td>
+                        </tr>
+                        <tr>
+                            <td>Postal Address</td>
+                            <td>{{contact.postal_address}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>{{contact.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Landline</td>
+                            <td>{{contact.landline}}</td>
+                        </tr>
+                        <tr>
+                            <td>Digicel</td>
+                            <td>{{contact.digicel}}</td>
+                        </tr>
+                        <tr>
+                            <td>Telikom</td>
+                            <td>{{contact.telikom}}</td>
+                        </tr>
+                        <tr>
+                            <td>Vodaphone</td>
+                            <td>{{contact.vodaphone}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        {% else %}
+            <p class='text-center'><i>No information to display</i></p>
+        {% endif %}
+
     </div>
     <br>
 </div>

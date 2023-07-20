@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main.apps.MainConfig',
-    'ckeditor',
-    'fontawesomefree',
+    "main.apps.MainConfig",
+    "ckeditor",
+    "fontawesomefree",
+    "bootstrap4",
+    "bootstrap_datepicker_plus",
 ]
 
 MIDDLEWARE = [
@@ -125,6 +127,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'media/',
 ]
 
+# stores all the staticfiles collected by collectstatic
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
@@ -132,5 +135,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# provides directory for the uploaded images
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
