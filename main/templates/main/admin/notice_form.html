@@ -3,7 +3,7 @@
 {% block content %}
     <br>
     <p class="display-1">Notice</p>
-    <form class="col-md-6" action="" method="POST">
+    <form class="col-md-6" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
