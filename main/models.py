@@ -9,8 +9,7 @@ class Institution(models.Model):
     """
     inst_name = models.CharField(max_length=255)
     about = RichTextField(max_length=700)
-    img = models.ImageField(upload_to='img_lib/',
-                            default='img_lib/default1.png')
+    img = models.ImageField(upload_to='inst/', default='default.png')
     vision = RichTextField(max_length=350)
     mission = RichTextField(max_length=350)
     is_active = models.BooleanField()
@@ -106,7 +105,7 @@ class Notice(models.Model):
     title = models.CharField(max_length=700, unique=True)
     intro = RichTextField(max_length=700)
     img = models.ImageField(null=True, blank=True,
-                            upload_to='updates/', unique=True)
+                            upload_to='notices/', unique=True)
     main_body = RichTextField(max_length=5000)
     outro = RichTextField(max_length=700)
     created = models.DateTimeField(auto_now_add=True)
@@ -125,7 +124,7 @@ class LatestUpdate(models.Model):
     title = models.CharField(max_length=700, unique=True)
     intro = RichTextField(max_length=700)
     img = models.ImageField(null=True, blank=True,
-                            upload_to='updates/', unique=True)
+                            upload_to='updates/', default="default.png", unique=True)
     main_body = RichTextField(max_length=5000)
     outro = RichTextField(max_length=700)
     created = models.DateTimeField(auto_now_add=True)

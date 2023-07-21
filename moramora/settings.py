@@ -114,7 +114,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -122,10 +122,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 # list all the directories in which django should look for static files
-STATICFILES_DIRS = [
-    BASE_DIR / 'static/',
-    BASE_DIR / 'media/',
-]
+STATICFILES_DIRS = (
+    BASE_DIR / 'static',
+    BASE_DIR / 'media'
+)
 
 # stores all the staticfiles collected by collectstatic
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -136,5 +136,5 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # provides directory for the uploaded images
-MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

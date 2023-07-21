@@ -16,14 +16,14 @@
                 <hr>
             </div>
             <div class="container">
-                <p>{{notice.intro}}</p>
+                <p>{{notice.intro|safe}}</p>
                 {% if notice.img.url is not None %}
                     <img class="img-fluid" style="width: 40em;" src="{{notice.img.url}}" alt="an image">
                     <br>
                 {% endif %}
                 <br>
-                <p>{{notice.main_body}}</p>
-                <p>{{notice.outro}}</p>
+                <p>{{notice.main_body|safe}}</p>
+                <p>{{notice.outro|safe}}</p>
             </div>
             <div class="container">
                 <a class="btn btn-primary" href="{% url 'notices' %}">Back</a>

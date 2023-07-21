@@ -41,7 +41,7 @@ def home(request):
     """ 
     This view will act as the home. It extracts data from the Institution model
     """
-    institution = Institution.objects.all()
+    institution = Institution.objects.first()
     context = {'institution': institution}
     return render(request, 'main/home.html', context)
 
@@ -188,7 +188,7 @@ def add_institution(request):
     """
     form = InstitutionForm()
     if request.method == "POST":
-        form = InstitutionForm(request.POST)
+        form = InstitutionForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')
@@ -203,7 +203,7 @@ def add_latest_update(request):
     """
     form = LatestUpdateForm()
     if request.method == "POST":
-        form = LatestUpdateForm(request.POST)
+        form = LatestUpdateForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('latest_updates')
@@ -309,10 +309,11 @@ def update_institution(request, pk):
     """ 
     Updates the existing information of an institution
     """
-    institution = Institution.object.get(id=pk)
+    institution = Institution.objects.get(id=pk)
     form = InstitutionForm(instance=institution)
     if request.method == "POST":
-        form = InstitutionForm(request.POST)
+        form = InstitutionForm(
+            request.POST, request.FILES, instance=institution)
         if form.is_valid():
             form.save()
             return redirect('home')
@@ -328,7 +329,8 @@ def update_latest_update(request, pk):
     latest_update = LatestUpdate.objects.get(id=pk)
     form = LatestUpdateForm(instance=latest_update)
     if request.method == "POST":
-        form = LatestUpdateForm(request.POST, instance=latest_update)
+        form = LatestUpdateForm(
+            request.POST, request.FILES, instance=latest_update)
         if form.is_valid():
             form.save()
             return redirect('latest_updates')
@@ -344,7 +346,7 @@ def update_notice(request, pk):
     notice = Notice.objects.get(id=pk)
     form = NoticeForm(instance=notice)
     if request.method == "POST":
-        form = NoticeForm(request.POST, instance=notice)
+        form = NoticeForm(request.POST, request.FILES, instance=notice)
         if form.is_valid():
             form.save()
             return redirect('notices')
@@ -360,7 +362,7 @@ def update_programme(request, pk):
     programme = Programme.objects.get(id=pk)
     form = ProgrammeForm(instance=programme)
     if request.method == "POST":
-        form = ProgrammeForm(request.POST, instance=programme)
+        form = ProgrammeForm(request.POST, request.FILES, instance=programme)
         if form.is_valid():
             form.save()
             return redirect('programmes')
@@ -374,9 +376,9 @@ def update_trade(request, pk):
     Updates the existing information of a trade
     """
     trade = Trade.objects.get(id=pk)
-    form = TradeForm()
+    form = TradeForm(instance=trade)
     if request.method == "POST":
-        form = TradeForm(request.POST, trade)
+        form = TradeForm(request.POST, request.FILES, instance=trade)
         if form.is_valid():
             form.save()
             return redirect('trades')

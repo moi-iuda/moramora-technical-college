@@ -2,24 +2,34 @@
 {% block content %}
 <div class="container border">
     <br>
-    <div class="container text-center">
-        <h1 class="display-1">Latest Updates</h1>
-        <p>Read the latest development from this page</p>
-    </div>
-    {% if latest_updates %}
-        <div class="row justify-content-around">
-            {% for latest_update in latest_updates %}
-                {% if latest_update.is_active %}
-                    <div id="background" class="col-lg-5 border m-3 p-3 rounded text-lg-center">
-                        <span class="fs-5">{{latest_update.title|truncatewords:":50"}}...
-                            <a href="{% url 'latest_update' latest_update.id %}">Read More</a></span><br><br>
-                        <span class="fs-5">Add on {{latest_update.created}}</span>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="row text-center">
+                <h1 class="display-1">Latest Updates</h1>
+                <p>Read the latest from our institution</p>
+            </div>
+            <div class="row justify-content-center">
+                {% if latest_updates %}
+                    {% for latest_update in latest_updates %}
+                        {% if latest_update.is_active %}
+                            <div id="background" class="col-md-5 rounded border m-3 p-3">
+                                <p class="fs-3">{{latest_update.title}}</p>
+                                <p>{{latest_update.intro|safe|truncatewords:20}}</p>
+                                <span><a class="btn btn-primary" href="{% url 'latest_update' latest_update.id %}">Read</a></span>
+                                {% if user.is_authenticated %}
+                                <span><a class="btn btn-primary"
+                                        href="{% url 'update_latest_update' latest_update.id %}">Update</a></span>
+                                {% endif %}
+                            </div>
+                    {% endif %}
+                {% endfor %}
+                {% else %}
+                <div class="text-center">
+                    <p><i>No latests to display the moment</i></p>
+                </div>
                 {% endif %}
-            {% endfor %}
+            </div>
         </div>
-    {% else %}
-        <p class="text-center"><i>No updates to display</i></p>
-    {% endif %}
+    </div>
 </div>
 {% endblock content %}

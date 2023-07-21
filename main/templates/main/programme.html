@@ -8,11 +8,11 @@
             <img src="{% static 'images/logo.png' %}" alt="logo">
         </div>
         <div id="background" class="container fw-bold">
-            <span><h1 class="display-1">{{programme.prog_name}}</h1></span>
-            <span>Code: {{programme.prog_code}} | </span>
-            <span>Duration: {{programme.prog_duration}} year(s) | </span>
-            <span>NQF Level: {{programme.nqf}} | </span>
-            <span>Qouta: {{programme.prog_quota}} | </span>
+            <span><h1 class="display-1">{{programme.prog_name|safe}}</h1></span>
+            <span>Code: {{programme.prog_code|safe}} | </span>
+            <span>Duration: {{programme.prog_duration|safe}} year(s) | </span>
+            <span>NQF Level: {{programme.nqf|safe}} | </span>
+            <span>Qouta: {{programme.prog_quota|safe}} | </span>
             {% if request.user.is_authenticated %}
             <span><a href="{% url 'update_programme' programme.id %}" class="card-link"><i class="fa-regular fa-pen-to-square"></i>
             Update</a></span>

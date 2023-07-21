@@ -25,6 +25,18 @@
                 <li class="nav-item">
                     <a id="navbar-links" class="nav-link" href="{% url 'trades' %}"><i class="fa-solid fa-hammer"></i> Trades</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" style="color: #FFF200;">
+                        <i class="fa-solid fa-book-open-reader"></i> Read
+                    </a>
+                    <ul id="background" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'latest_updates' %}"><i class="fa-solid fa-plus"></i> Latest Update</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'notices' %}"><i class="fa-solid fa-plus"></i> Notice</a></li>
+                        <li><a class="dropdown-item" href="{% url 'trades' %}"><i class="fa-solid fa-plus"></i> Trade</a></li>
+                    </ul>
+                </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"

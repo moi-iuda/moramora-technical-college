@@ -26,17 +26,23 @@
             <h1 class="fs-2">
                 Programmes offered under this Department
             </h1>
-            {% for programme in department.programme_set.all %}
-                <ol>
-                    <li><a href="{% url 'programme' programme.id %}">{{programme.prog_name}}</a></li>
-                </ol>
-            {% endfor %}
+            <!-- check if this department have any programmes -->
+            {% if department.programme_set.all %}
+                <!-- if there is any, it loops through to display them -->
+                {% for programme in department.programme_set.all %}
+                    <ol>
+                        <li><a href="{% url 'programme' programme.id %}">{{programme.prog_name}}</a></li>
+                    </ol>
+                {% endfor %}
+            {% else %}
+                    <!-- if the is no programme it displays this message -->
+                <p><i>No programmes to display at the moment</i></p>
+            {% endif %}
         </div>
     </div>
     <div>
         <a class="btn btn-primary" href="{% url 'departments' %}">Back</a>
     </div>
     <br>
-
 </div>
 {% endblock content %}
