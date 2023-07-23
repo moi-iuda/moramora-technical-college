@@ -4,7 +4,12 @@ from .forms import *
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 # Create your views here.
+
+
+def handler404(request, exception):
+    return HttpResponse("<h1>404: Page Not Found!</h1>")
 
 
 def login_user(request):
