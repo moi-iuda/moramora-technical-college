@@ -8,27 +8,47 @@
                     <h1 class="display-1">Our Departments</h1>
                     <p>Read about our departments and the programmes they offer</p>
                 </div>
-                <div class="row justify-content-center">
-                    {% if departments %}
-                        {% for department in departments %}
-                            {% if department.is_active %}
-                                <div id="background" class="col-md-5 rounded border m-3 p-3">
-                                    <p class="fs-3">{{department.dept}}</p>
-                                    <p>{{department.desc|safe|truncatewords:20}}</p>
-                                    <span><a class="btn btn-primary" href="{% url 'department' department.id %}">View</a></span>
-                                    {% if user.is_authenticated %}
-                                        <span><a class="btn btn-primary" href="{% url 'update_department' department.id %}">Update</a></span>
-                                    {% endif %}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    {% else %}
-                        <div class="text-center">
-                            <p><i>No departments to display the moment</i></p>
-                        </div>
-                    {% endif %}
-                </div>
             </div>
+        </div>
+
+        <div class="row justify-content-center">
+            {% if user.is_authenticated %}
+                {% if departments %}
+                    {% for department in departments %}
+                        <div id="background" class="col-md-5 rounded border m-3 p-3">
+                            {% if department.is_active %}
+                                <p><strong>Status:</strong> Active</p>
+                            {% else %}
+                                <p><strong>Status:</strong> Deactivated</p>
+                            {% endif %}
+                            <p class="fs-3">{{department.dept}}</p>
+                            <p>{{department.desc|safe|truncatewords:20}}</p>
+                            <span><a class="btn btn-primary" href="{% url 'department' department.id %}">View</a></span>
+                            <span><a class="btn btn-primary" href="{% url 'update_department' department.id %}">Update</a></span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center">
+                        <p><i>No departments to display the moment</i></p>
+                    </div>
+                {% endif %}
+            {% else %}
+                {% if departments %}
+                    {% for department in departments %}
+                        {% if department.is_active %}
+                            <div id="background" class="col-md-5 rounded border m-3 p-3">
+                                <p class="fs-3">{{department.dept}}</p>
+                                <p>{{department.desc|safe|truncatewords:20}}</p>
+                                <span><a class="btn btn-primary" href="{% url 'department' department.id %}">View</a></span>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center">
+                        <p><i>No departments to display the moment</i></p>
+                    </div>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 {% endblock content %}

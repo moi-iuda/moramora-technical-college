@@ -225,3 +225,24 @@ class InstitutionForm(ModelForm):
             {'class': 'form-control', 'type': 'file'})
         self.fields['is_active'].widget.attrs.update(
             {'class': 'form-check-input', 'type': 'checkbox'})
+
+
+class TradeImageLibraryForm(ModelForm):
+    class Meta:
+        model = ImageLibrary
+        fields = "__all__"
+
+        labels = {
+            'img': 'Image',
+            'desc': 'Description',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['trade'].widget.attrs.update({'class': 'form-control'})
+        self.fields['title'].widget.attrs.update(
+            {'class': 'form-control'})
+        self.fields['img'].widget.attrs.update(
+            {'class': 'form-control', 'type': 'file'})
+        self.fields['desc'].widget.attrs.update(
+            {'class': 'form-control'})

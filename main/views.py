@@ -9,7 +9,7 @@ from django.http import HttpResponse
 
 
 def handler404(request, exception):
-    return HttpResponse("<h1>404: Page Not Found!</h1>")
+    return render(request, 'main/error_handling.html')
 
 
 def login_user(request):
@@ -34,7 +34,7 @@ def login_user(request):
             print('Password or Username is incorrect!!')
 
     context = {}
-    return render(request, 'main/admin/login_user_form.html', context)
+    return render(request, 'main/forms/login_user_form.html', context)
 
 
 def logout_user(request):
@@ -153,7 +153,7 @@ def add_academic_calendar(request):
             form.save()
             return redirect('calendar_n_fees')
     context = {'form': form}
-    return render(request, 'main/admin/academic_calendar_form.html', context)
+    return render(request, 'main/forms/academic_calendar_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -168,7 +168,7 @@ def add_department(request):
             form.save()
             return redirect('departments')
     context = {'form': form}
-    return render(request, 'main/admin/department_form.html', context)
+    return render(request, 'main/forms/department_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -183,7 +183,7 @@ def add_contact(request):
             form.save()
             return redirect('home')
     context = {'form': form}
-    return render(request, 'main/admin/contact_form.html', context)
+    return render(request, 'main/forms/contact_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -198,7 +198,7 @@ def add_institution(request):
             form.save()
             return redirect('home')
     context = {'form': form}
-    return render(request, 'main/admin/institution_form.html', context)
+    return render(request, 'main/forms/institution_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -213,7 +213,7 @@ def add_latest_update(request):
             form.save()
             return redirect('latest_updates')
     context = {'form': form}
-    return render(request, 'main/admin/latest_update_form.html', context)
+    return render(request, 'main/forms/latest_update_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -223,12 +223,12 @@ def add_notice(request):
     """
     form = NoticeForm()
     if request.method == "POST":
-        form = NoticeForm(request.POST)
+        form = NoticeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('notices')
     context = {'form': form}
-    return render(request, 'main/admin/notice_form.html', context)
+    return render(request, 'main/forms/notice_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -243,7 +243,7 @@ def add_programme(request):
             form.save()
             return redirect('programmes')
     context = {'form': form}
-    return render(request, 'main/admin/programme_form.html', context)
+    return render(request, 'main/forms/programme_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -253,12 +253,27 @@ def add_trade(request):
     """
     form = TradeForm()
     if request.method == "POST":
-        form = TradeForm(request.POST)
+        form = TradeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('trades')
     context = {'form': form}
-    return render(request, 'main/admin/trade_form.html', context)
+    return render(request, 'main/forms/trade_form.html', context)
+
+
+@login_required(login_url='login_user')
+def add_trade_image(request):
+    """ 
+    Updates the existing information of a trade
+    """
+    form = TradeImageLibraryForm()
+    if request.method == "POST":
+        form = TradeImageLibraryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('trades')
+    context = {'form': form}
+    return render(request, 'main/forms/trade_image_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -274,7 +289,7 @@ def update_academic_calendar(request, pk):
             form.save()
             return redirect('academic_calendar')
     context = {'form': form, "academic_calendar": academic_calendar}
-    return render(request, 'main/admin/academic_calendar_form.html', context)
+    return render(request, 'main/forms/academic_calendar_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -290,7 +305,7 @@ def update_department(request, pk):
             form.save()
             return redirect('departments')
     context = {'form': form, 'department': department}
-    return render(request, 'main/admin/department_form.html', context)
+    return render(request, 'main/forms/department_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -306,7 +321,7 @@ def update_contact(request, pk):
             form.save()
             return redirect('home')
     context = {'form': form, 'contact': contact}
-    return render(request, 'main/admin/contact_form.html', context)
+    return render(request, 'main/forms/contact_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -323,7 +338,7 @@ def update_institution(request, pk):
             form.save()
             return redirect('home')
     context = {'form': form, 'institution': institution}
-    return render(request, 'main/admin/institution_form.html', context)
+    return render(request, 'main/forms/institution_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -340,7 +355,7 @@ def update_latest_update(request, pk):
             form.save()
             return redirect('latest_updates')
     context = {'form': form, 'latest_update': latest_update}
-    return render(request, 'main/admin/latest_update_form.html', context)
+    return render(request, 'main/forms/latest_update_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -356,7 +371,7 @@ def update_notice(request, pk):
             form.save()
             return redirect('notices')
     context = {'form': form, 'notice': notice}
-    return render(request, 'main/admin/notice_form.html', context)
+    return render(request, 'main/forms/notice_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -372,7 +387,7 @@ def update_programme(request, pk):
             form.save()
             return redirect('programmes')
     context = {'form': form, 'programme': programme}
-    return render(request, 'main/admin/programme_form.html', context)
+    return render(request, 'main/forms/programme_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -387,5 +402,22 @@ def update_trade(request, pk):
         if form.is_valid():
             form.save()
             return redirect('trades')
-    context = {'form': form, 'trade': trade}
-    return render(request, 'main/admin/trade_form.html', context)
+    context = {'form': form}
+    return render(request, 'main/forms/trade_form.html', context)
+
+
+@login_required(login_url='login_user')
+def update_trade_image(request, pk):
+    """ 
+    Updates the existing information of a trade
+    """
+    trade_image = ImageLibrary.objects.get(id=pk)
+    form = TradeImageLibraryForm(instance=trade_image)
+    if request.method == "POST":
+        form = TradeImageLibraryForm(
+            request.POST, request.FILES, instance=trade_image)
+        if form.is_valid():
+            form.save()
+            return redirect('trades')
+    context = {'form': form, 'trade_image': trade_image}
+    return render(request, 'main/forms/trade_image_form.html', context)

@@ -31,10 +31,10 @@
                         <i class="fa-solid fa-book-open-reader"></i> Read
                     </a>
                     <ul id="background" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'latest_updates' %}"><i class="fa-solid fa-plus"></i> Latest Update</a>
+                        <li><a class="dropdown-item" href="{% url 'latest_updates' %}"><i class="fa-solid fa-book-open-reader"></i> Latest Update</a>
                         </li>
-                        <li><a class="dropdown-item" href="{% url 'notices' %}"><i class="fa-solid fa-plus"></i> Notice</a></li>
-                        <li><a class="dropdown-item" href="{% url 'trades' %}"><i class="fa-solid fa-plus"></i> Trade</a></li>
+                        <li><a class="dropdown-item" href="{% url 'notices' %}"><i class="fa-solid fa-book-open-reader"></i> Notice</a></li>
+                        <li><a class="dropdown-item" href="{% url 'trades' %}"><i class="fa-solid fa-book-open-reader"></i> Trade</a></li>
                     </ul>
                 </li>
                 {% if user.is_authenticated %}
@@ -51,6 +51,8 @@
                             <li><a class="dropdown-item" href="{% url 'add_latest_update' %}"><i class="fa-solid fa-plus"></i> Latest Update</a></li>
                             <li><a class="dropdown-item" href="{% url 'add_notice' %}"><i class="fa-solid fa-plus"></i> Notice</a></li>
                             <li><a class="dropdown-item" href="{% url 'add_programme' %}"><i class="fa-solid fa-plus"></i> Programme</a></li>
+                            <li><a class="dropdown-item" href="{% url 'add_trade_image' %}"><i class="fa-solid fa-plus"></i> Trade Image</a></li>
+                            <li><a class="dropdown-item" href="{% url 'add_trade' %}"><i class="fa-solid fa-plus"></i> Trades</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

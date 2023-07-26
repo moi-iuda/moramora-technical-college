@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <p class="display-1">Notice</p>
+    <form class="col-md-6" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <input class="btn btn-primary mx-3" type="Submit">
+        <a class="btn btn-outline-secondary" href="{% url 'notices' %}">Back</a>
+    </form>
+    <br>
+{% endblock content %}  

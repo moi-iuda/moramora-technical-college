@@ -3,17 +3,20 @@
 {% block content %}
     <div class="container border">
         <br>
-        <h1 class="display-1">Trade - {{trade.trade}}</h1>
-        <div class="row">
+        <h1 class="display-1">Trade: {{trade.trade}}</h1>
+        <div class="row justify-content-center">
             {% if images %}
                 {% for image in images %}
                         {% if image.is_active %}
-                            <div class="card m-3" style="width: 25rem;">
+                            <div class="card m-3" style="width: 30rem;">
                                 <img class="card-img-top" src="{{image.img.url}}" alt="Card image cap">
                                 <div id="background" class="card-body">
                                     <h1 class="card-text">{{image.title|safe}}</h1>
                                     <p class="card-text">{{image.desc|safe}}</p>
-                                    <p class="card-text">{{image.created|safe}}</p>
+                                    <p class="card-text">{{image.created.date|safe}}</p>
+                                    {% if user.is_authenticated %}
+                                        <span><a class="btn btn-primary" href="{% url 'update_trade_image' image.id %}">Update</a></span>
+                                    {% endif %}
                                 </div>
                             </div>
                         {% endif %}

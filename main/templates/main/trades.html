@@ -2,23 +2,32 @@
 {% block content %}
     <div class="container border">
         <br>
-        <div class="row justify-content-around">
+        <div class="row justify-content-center">
             <div class="container text-center">
                 <h1 class="display-1">Our Trades</h1>
                 <p>View our  picture collections according the Trades we have</p>
             </div>
-            {% for trade in trades %}
-                {% if trade.is_active %}
-                <div id="background" class="col-md-5 border m-3 p-3 rounded">
-                    <span class="fs-4" id="headings">{{trade.trade|safe}}</span><br>
-                    <span>
-                        <a class="btn btn-outline-primary" href="{% url 'trade_images' trade.id %}">View</a>
-                    </span>
+            {% if trades %}
+                {% for trade in trades %}
+                    {% if trade.is_active %}
+                    <div id="background" class="col-md-3 border m-3 p-3 rounded">
+                        <span class="fs-4" id="headings">{{trade.trade|safe}}</span><br>
+                        <span>
+                            <a class="btn btn-outline-primary" href="{% url 'trade_images' trade.id %}">View</a>
+                        </span>
+                        {% if user.is_authenticated %}
+                            <span><a class="btn btn-primary" href="{% url 'update_trade' trade.id %}">Update</a></span>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                        <p class="text-center"><i>No trades to display</i></p>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="text-center">
+                    <p><i>No trades to display the moment</i></p>
                 </div>
-                {% else %}
-                    <p class="text-center"><i>No trades to display</i></p>
-                {% endif %}
-            {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock content %}

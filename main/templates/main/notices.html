@@ -5,31 +5,48 @@
     <div class="container">
         <div class="row">
             <div class="row text-center">
-                <h1 class="display-1">Latest Updates</h1>
-                <p>Read the latest from our institution</p>
+                <h1 class="display-1">Our Notice Board</h1>
+                <p>Read your <u>NOTICES</u> here to stay informed!!!</p>
             </div>
-            <div class="row justify-content-center">
-                {% if notices %}
-                    {% for notice in notices %}
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        {% if user.is_authenticated %}
+            {% if notices %}
+                {% for notice in notices %}
+                    <div id="background" class="col-md-5 rounded border m-3 p-3">
                         {% if notice.is_active %}
-                            <div id="background" class="col-md-5 rounded border m-3 p-3">
-                                <p class="fs-3">{{notice.title}}</p>
-                                <p>{{notice.intro|safe|truncatewords:20}}</p>
-                                <span><a class="btn btn-primary" href="{% url 'notice' notice.id %}">Read</a></span>
-                                {% if user.is_authenticated %}
-                                <span><a class="btn btn-primary"
-                                        href="{% url 'notice' notice.id %}">Update</a></span>
-                                {% endif %}
-                            </div>
+                            <p><strong>Status:</strong> Active</p>
+                        {% else %}
+                            <p><strong>Status:</strong> Deactivated</p>
                         {% endif %}
-                    {% endfor %}
-                {% else %}
+                        <p class="fs-3">{{notice.title}}</p>
+                        <p>{{notice.intro|safe|truncatewords:20}}</p>
+                        <span><a class="btn btn-primary" href="{% url 'notice' notice.id %}">View</a></span>
+                        <span><a class="btn btn-primary" href="{% url 'update_notice' notice.id %}">Update</a></span>
+                    </div>
+                {% endfor %}
+            {% else %}
                 <div class="text-center">
                     <p><i>No notices to display the moment</i></p>
                 </div>
+            {% endif %}
+        {% else %}
+            {% for notice in notices %}
+                {% if notice.is_active %}
+                    <div id="background" class="col-md-5 rounded border m-3 p-3">
+                        <p class="fs-3">{{notice.title}}</p>
+                        <p>{{notice.intro|safe|truncatewords:20}}</p>
+                        <span><a class="btn btn-primary" href="{% url 'notice' notice.id %}">View</a></span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <p><i>No notices to display the moment</i></p>
+                    </div>
                 {% endif %}
-            </div>
-        </div>
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock content %}

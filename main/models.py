@@ -115,6 +115,9 @@ class Notice(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-created']
+
 
 class LatestUpdate(models.Model):
     """ 
@@ -155,6 +158,9 @@ class FeeStructure(models.Model):
     def __str__(self):
         return (f"Fee Structure for the year {self.year}")
 
+    class Meta:
+        ordering = ['-created']
+
 
 class AcademicCalendar(models.Model):
     """
@@ -178,6 +184,9 @@ class AcademicCalendar(models.Model):
 
     def __str__(self):
         return (f"Academic Calendar for the year {self.year}")
+
+    class Meta:
+        ordering = ['-created']
 
 
 class Trade(models.Model):
