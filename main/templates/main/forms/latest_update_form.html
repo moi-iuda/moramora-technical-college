@@ -7,7 +7,7 @@
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
-        <input class="btn btn-primary mx-3" type="Submit">
+        <input class="btn btn-primary mx-3" type="Submit" value="Save">
         <a class="btn btn-outline-secondary" href="{% url 'latest_updates' %}">Back</a>
     </form>
     <br>

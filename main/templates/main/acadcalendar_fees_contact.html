@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+    Calendar
+{% endblock title %}
 {% block content %}
 <div class="container border">
     <br>
@@ -7,8 +10,16 @@
         <div class="container text-center m-auto">
             <img src="{% static 'images/logo.png' %}" alt="logo">
         </div>
-        <h1 class="display-1 text-center">Our Academic Calendar for {{acad_cal.year}}</h1>
+        <p class="display-4 text-center">Our Academic Calendar ({{acad_cal.year}})</p>
         {% if acad_cal %}
+            <div class="text-center">
+                {% if request.user.is_authenticated %}
+                    <span>
+                        <a href="{% url 'update_academic_calendar' acad_cal.id %}" class=" m-3 rounded-pill btn btn-secondary"><i
+                                class="fa-regular fa-pen-to-square"></i> Update</a>
+                    </span>
+                {% endif %}
+            </div>
             {% if acad_cal.is_active %}
                 <table class="table table-striped w-75" style="color: #145A32">
                     <tr>
@@ -44,9 +55,17 @@
     <br>
 
     <div class="row justify-content-center">
-        <h1 class="display-1 text-center" >Our Fees Structure for {{fees.year}}</h1>
-        {% if fees %}
-            {% if fees.is_active %}
+        <p class="display-4 text-center" >Our Fees Structure for ({{fee.year}})</p>
+        <div class="text-center">
+            {% if request.user.is_authenticated %}
+            <span>
+                <a href="{% url 'update_fees' fee.id %}" class=" m-3 rounded-pill btn btn-secondary"><i
+                        class="fa-regular fa-pen-to-square"></i> Update</a>
+            </span>
+            {% endif %}
+        </div>
+        {% if fee %}
+            {% if fee.is_active %}
                 <table class="table table-striped w-75" style="color: #145A32">
                     <tr>
                         <th>Student Type</th>
@@ -54,19 +73,19 @@
                     </tr>
                     <tr>
                         <td>HECAS Residence</td>
-                        <td>K{{fees.hecas_resid|floatformat:2}}</td>
+                        <td>K{{fee.hecas_resid|floatformat:2}}</td>
                     </tr>
                     <tr>
                         <td>HECAS Non-Residence</td>
-                        <td>K{{fees.hecas_non_resid|floatformat:2}}</td>
+                        <td>K{{fee.hecas_non_resid|floatformat:2}}</td>
                     </tr>
                     <tr>
                         <td>Self-Sponsor Residence</td>
-                        <td>K{{fees.ss_resid|floatformat:2}}</td>
+                        <td>K{{fee.ss_resid|floatformat:2}}</td>
                     </tr>
                     <tr>
                         <td>Self-Sponsor Non-Residence</td>
-                        <td>K{{fees.ss_non_resid|floatformat:2}}</td>
+                        <td>K{{fee.ss_non_resid|floatformat:2}}</td>
                     </tr>
                 </table>
             {% endif %}
@@ -77,7 +96,7 @@
     <br>
 
     <div class="row justify-content-center">
-        <h1 class="display-1 text-center">Our Contacts</h1>
+        <p class="display-4 text-center">Our Contacts</p>
         {% if contacts %}
             {% if contacts.is_active %}
                 <table class="table table-striped w-75" style="color: #145A32">

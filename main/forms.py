@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from .models import *
 from django.contrib.auth.models import User
 from bootstrap_datepicker_plus.widgets import DatePickerInput
+from django import forms
 
 
 class DepartmentForm(ModelForm):
@@ -41,19 +42,6 @@ class AcademicCalendarForm(ModelForm):
             'sem_two_cls_begins': 'Semester One Classes - Starting Date',
             'sem_two_cls_ends': 'Semester Two Classes - Ending Date',
         }
-        widgets = {
-            'sem_one_reg_begins': DatePickerInput(),
-            'sem_one_reg_ends': DatePickerInput(),
-            'sem_one_cls_begins': DatePickerInput(),
-            'sem_one_cls_ends': DatePickerInput(),
-            'sem_one_brk_begins': DatePickerInput(),
-            'sem_one_brk_ends': DatePickerInput(),
-            'sem_two_reg_begins': DatePickerInput(),
-            'sem_two_reg_ends': DatePickerInput(),
-            'sem_two_cls_begins': DatePickerInput(),
-            'sem_two_cls_ends': DatePickerInput(),
-
-        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -61,6 +49,52 @@ class AcademicCalendarForm(ModelForm):
         self.fields['note'].widget.attrs.update({'class': 'form-control'})
         self.fields['is_active'].widget.attrs.update(
             {'class': 'form-check-input', 'type': 'checkbox'})
+        self.fields['sem_one_reg_begins'].widget = forms.widgets.DateInput(
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
+        self.fields['sem_one_reg_ends'].widget = forms.widgets.DateInput(
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
+        self.fields['sem_one_cls_begins'].widget = forms.widgets.DateInput(
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
+        self.fields['sem_one_cls_ends'].widget = forms.widgets.DateInput(
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
+        self.fields['sem_one_brk_begins'].widget = forms.widgets.DateInput(
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
+        self.fields['sem_one_brk_ends'].widget = forms.widgets.DateInput(
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
+        self.fields['sem_two_reg_begins'].widget = forms.widgets.DateInput(
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
+        self.fields['sem_two_reg_ends'].widget = forms.widgets.DateInput(
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
+        self.fields['sem_two_cls_begins'].widget = forms.widgets.DateInput(
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
+        self.fields['sem_two_cls_ends'].widget = forms.widgets.DateInput(
+            attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
+
+
+class FeesForm(ModelForm):
+    class Meta:
+        model = FeeStructure
+        fields = "__all__"
+        labels = {
+            'desc': 'Description',
+            'hecas_resid': 'HECAS Residence',
+            'hecas_non_resid': 'HECAS Non-Residence',
+            'ss_resid': 'Self-Sponsor Residence',
+            'ss_non_resid': 'Self-Sponsor Non-Residence',
+            'is_active': 'Active',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['year'].widget.attrs.update({'class': 'form-control'})
+        self.fields['hecas_resid'].widget.attrs.update(
+            {'class': 'form-control'})
+        self.fields['hecas_non_resid'].widget.attrs.update(
+            {'class': 'form-control'})
+        self.fields['ss_resid'].widget.attrs.update({'class': 'form-control'})
+        self.fields['ss_non_resid'].widget.attrs.update(
+            {'class': 'form-control'})
+        self.fields['is_active'].widget.attrs.update({'class': 'checkbox'})
 
 
 class ContactForm(ModelForm):

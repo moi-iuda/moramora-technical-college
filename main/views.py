@@ -9,13 +9,18 @@ from django.http import HttpResponse
 
 
 def handler404(request, exception):
+    """
+    Generates a 404 Error Message if a wrong url's being entered
+    """
     return render(request, 'main/error_handling.html')
 
 
 def login_user(request):
-
+    """
+    Authenticates users.
+    """
     if request.user.is_authenticated:
-        return redirect('departments')
+        return redirect('home')
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -73,7 +78,7 @@ def programmes(request):
     """ 
     Retrieves all the programmes from the programme model
     """
-    programmes = Programme.objects.all()[:10]
+    programmes = Programme.objects.all()
     context = {'programmes': programmes}
     return render(request, 'main/programmes.html', context)
 
@@ -131,12 +136,6 @@ def trades(request):
     return render(request, 'main/trades.html', context)
 
 
-def navbar_trades(request):
-    trades = Trade.objects.all()
-    context = {'trades': trades}
-    return render(request, 'main/navbar.html', context)
-
-
 def trade_images(request, pk):
     trade = Trade.objects.get(id=pk)
     images = trade.imagelibrary_set.all()
@@ -151,9 +150,21 @@ def add_academic_calendar(request):
         form = AcademicCalendarForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('calendar_n_fees')
+            return redirect('acadcalendar_fees_contact')
     context = {'form': form}
     return render(request, 'main/forms/academic_calendar_form.html', context)
+
+
+@login_required(login_url='login_user')
+def add_fees(request):
+    form = FeesForm()
+    if request.method == "POST":
+        form = FeesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('acadcalendar_fees_contact')
+    context = {'form': form}
+    return render(request, 'main/forms/fees_form.html', context)
 
 
 @login_required(login_url='login_user')
@@ -287,9 +298,25 @@ def update_academic_calendar(request, pk):
         form = AcademicCalendarForm(request.POST, instance=academic_calendar)
         if form.is_valid():
             form.save()
-            return redirect('academic_calendar')
+            return redirect('acadcalendar_fees_contact')
     context = {'form': form, "academic_calendar": academic_calendar}
     return render(request, 'main/forms/academic_calendar_form.html', context)
+
+
+@login_required(login_url='login_user')
+def update_fees(request, pk):
+    """ 
+    Updates the existing information in fee structure model
+    """
+    fee = FeeStructure.objects.get(id=pk)
+    form = FeesForm(instance=fee)
+    if request.method == "POST":
+        form = FeesForm(request.POST, instance=fee)
+        if form.is_valid():
+            form.save()
+            return redirect('acadcalendar_fees_contact')
+    context = {'form': form, "fee": fee}
+    return render(request, 'main/forms/fees_form.html', context)
 
 
 @login_required(login_url='login_user')

@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}
+    Latest Updates
+{% endblock title %}
 {% block content %}
 <div class="container border">
     <br>
@@ -23,8 +26,8 @@
                         {% endif %}
                         <p class="fs-3">{{latest_update.title}}</p>
                         <p>{{latest_update.intro|safe|truncatewords:20}}</p>
-                        <span><a class="btn btn-primary" href="{% url 'latest_update' latest_update.id %}">View</a></span>
-                        <span><a class="btn btn-primary" href="{% url 'update_latest_update' latest_update.id %}">Update</a></span>
+                        <span><a class="btn btn-primary" href="{% url 'latest_update' latest_update.id %}"><i class="fa-regular fa-eye"></i> View</a></span>
+                        <span><a class="btn btn-primary" href="{% url 'update_latest_update' latest_update.id %}"><i class="fa-regular fa-pen-to-square"></i> Update</a></span>
                     </div>
                 {% endfor %}
             {% else %}

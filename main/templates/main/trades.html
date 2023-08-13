@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}
+    Trades
+{% endblock title %}
 {% block content %}
     <div class="container border">
         <br>
@@ -13,10 +16,10 @@
                     <div id="background" class="col-md-3 border m-3 p-3 rounded">
                         <span class="fs-4" id="headings">{{trade.trade|safe}}</span><br>
                         <span>
-                            <a class="btn btn-outline-primary" href="{% url 'trade_images' trade.id %}">View</a>
+                            <a class="btn btn-primary mx-2" href="{% url 'trade_images' trade.id %}">View</a>
                         </span>
                         {% if user.is_authenticated %}
-                            <span><a class="btn btn-primary" href="{% url 'update_trade' trade.id %}">Update</a></span>
+                            <span><a class="btn btn-outline-secondary mx-2" href="{% url 'update_trade' trade.id %}">Update</a></span>
                         {% endif %}
                     </div>
                     {% else %}

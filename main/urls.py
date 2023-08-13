@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('navbar_trades/', views.navbar_trades, name='navbar_trades'),
     path('departments/', views.departments, name='departments'),
     path('department/<str:pk>/', views.department, name='department'),
     path('programmes/', views.programmes, name='programmes'),
@@ -22,6 +21,8 @@ urlpatterns = [
          views.add_department, name='add_department'),
     path('add_academic_calendar/',
          views.add_academic_calendar, name='add_academic_calendar'),
+    path('add_fees/',
+         views.add_fees, name='add_fees'),
     path('add_contact/',
          views.add_contact, name='add_contact'),
     path('add_institution/',
@@ -44,6 +45,8 @@ urlpatterns = [
          views.update_department, name='update_department'),
     path('update_academic_calendar/<str:pk>/',
          views.update_academic_calendar, name='update_academic_calendar'),
+    path('update_fees/<str:pk>/',
+         views.update_fees, name='update_fees'),
     path('update_contact/<str:pk>/',
          views.update_contact, name='update_contact'),
     path('update_institution/<str:pk>/',

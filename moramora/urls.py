@@ -12,3 +12,4 @@ handler404 = 'main.views.handler404'
 
 # sets the path for users to upload pictures to a directory
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

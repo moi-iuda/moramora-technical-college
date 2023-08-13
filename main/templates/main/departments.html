@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}
+    Departments
+{% endblock title %}
 {% block content %}
     <div class="container border">
         <br>
@@ -23,8 +26,8 @@
                             {% endif %}
                             <p class="fs-3">{{department.dept}}</p>
                             <p>{{department.desc|safe|truncatewords:20}}</p>
-                            <span><a class="btn btn-primary" href="{% url 'department' department.id %}">View</a></span>
-                            <span><a class="btn btn-primary" href="{% url 'update_department' department.id %}">Update</a></span>
+                            <span><a class="btn btn-primary mx-2" href="{% url 'department' department.id %}"><i class="fa-regular fa-eye"></i> View</a></span>
+                            <span><a class="btn btn-outline-secondary mx-2" href="{% url 'update_department' department.id %}"><i class="fa-regular fa-pen-to-square"></i> Update</a></span>
                         </div>
                     {% endfor %}
                 {% else %}

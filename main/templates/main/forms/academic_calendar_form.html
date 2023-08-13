@@ -10,7 +10,7 @@
     {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
-        <input class="btn btn-primary mx-3" type="Submit">
+        <input class="btn btn-primary mx-3" type="Submit" value="Save">
         <a class="btn btn-outline-secondary" href="{% url 'acadcalendar_fees_contact' %}">Back</a>
     </form>
     <br>
