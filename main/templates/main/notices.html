@@ -26,8 +26,10 @@
                         {% endif %}
                         <p class="fs-3">{{notice.title}}</p>
                         <p>{{notice.intro|safe|truncatewords:20}}</p>
-                        <span><a class="btn btn-primary" href="{% url 'notice' notice.id %}">View</a></span>
-                        <span><a class="btn btn-primary" href="{% url 'update_notice' notice.id %}">Update</a></span>
+                        <span><a class="btn btn-primary mx-1" href="{% url 'notice' notice.id %}">View</a></span>
+                        <span><a class="btn btn-outline-secondary mx-1" href="{% url 'update_notice' notice.id %}">Update</a></span>
+                        <span><a class="btn btn-outline-danger mx-1" href="{% url 'delete_notice' notice.id %}"><i
+                                    class="fa-solid fa-trash"></i> Delete</a></span>
                     </div>
                 {% endfor %}
             {% else %}

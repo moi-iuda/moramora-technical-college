@@ -8,7 +8,7 @@
             {% if request.user.is_authenticated %}
                 {% if institution %}
                 <span>
-                    <a href="{% url 'update_institution' institution.id %}" class=" m-3 rounded-pill btn btn-secondary"><i class="fa-regular fa-pen-to-square"></i> Update</a>
+                    <a href="{% url 'update_institution' institution.id %}" class=" m-3 rounded-pill btn btn-light"><i class="fa-regular fa-pen-to-square"></i> Update</a>
                 </span>
                 {% endif %}
             {% endif %}
@@ -31,7 +31,11 @@
             {% endif %}
         </div>
         <div class="col-lg-6 py-5 m-auto">
-            <img class="img-fluid rounded" src="{{ institution.img.url }}" alt="a picture">
+            {% if institution.img.url %}
+                <img class="img-fluid rounded" src="{{ institution.img.url }}" alt="a picture">
+            {% else %}
+                <p><i>No image to display</i></p>
+            {% endif %}
         </div>
     </div>
     <div class="col">

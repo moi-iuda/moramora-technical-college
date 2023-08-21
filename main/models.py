@@ -28,6 +28,7 @@ class Contact(models.Model):
     """
     inst = models.ForeignKey(Institution, on_delete=models.CASCADE)
     contact_person = models.CharField(max_length=255)
+    designation = models.CharField(max_length=255)
     postal_address = models.CharField(max_length=255)
     email = models.EmailField(default='youremail@example.com', max_length=255)
     landline = models.IntegerField()
@@ -35,6 +36,7 @@ class Contact(models.Model):
     telikom = models.IntegerField()
     vodaphone = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.contact_person

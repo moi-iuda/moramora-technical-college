@@ -28,7 +28,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false" style="color: #FFF200;">
-                        <i class="fa-solid fa-book-open-reader"></i> Read
+                        <i class="fa-solid fa-book-open-reader"></i> News
                     </a>
                     <ul id="background" class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{% url 'latest_updates' %}"><i class="fa-solid fa-book-open-reader"></i> Latest Update</a>
@@ -46,6 +46,9 @@
                         <ul id="background" class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'add_department' %}"><i class="fa-solid fa-plus"></i> Department</a></li>
                             <li><a class="dropdown-item" href="{% url 'add_academic_calendar' %}"><i class="fa-solid fa-plus"></i> Academic Calendar</a></li>
+                            
+                            <li><a class="dropdown-item" href="{% url 'add_fees' %}"><i class="fa-solid fa-plus"></i> School Fees</a></li>
+                            
                             <li><a class="dropdown-item" href="{% url 'add_contact' %}"><i class="fa-solid fa-plus"></i> Contact</a></li>
                             <li><a class="dropdown-item" href="{% url 'add_institution' %}"><i class="fa-solid fa-plus"></i> Institution</a></li>
                             <li><a class="dropdown-item" href="{% url 'add_latest_update' %}"><i class="fa-solid fa-plus"></i> Latest Update</a></li>

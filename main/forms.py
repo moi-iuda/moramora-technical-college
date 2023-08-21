@@ -1,7 +1,6 @@
 from django.forms import ModelForm
 from .models import *
 from django.contrib.auth.models import User
-from bootstrap_datepicker_plus.widgets import DatePickerInput
 from django import forms
 
 
@@ -110,6 +109,8 @@ class ContactForm(ModelForm):
         self.fields['inst'].widget.attrs.update(
             {'class': 'form-control'})
         self.fields['contact_person'].widget.attrs.update(
+            {'class': 'form-control'})
+        self.fields['designation'].widget.attrs.update(
             {'class': 'form-control'})
         self.fields['postal_address'].widget.attrs.update(
             {'class': 'form-control'})

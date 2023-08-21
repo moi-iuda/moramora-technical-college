@@ -26,8 +26,9 @@
                             {% endif %}
                             <p class="fs-3">{{department.dept}}</p>
                             <p>{{department.desc|safe|truncatewords:20}}</p>
-                            <span><a class="btn btn-primary mx-2" href="{% url 'department' department.id %}"><i class="fa-regular fa-eye"></i> View</a></span>
-                            <span><a class="btn btn-outline-secondary mx-2" href="{% url 'update_department' department.id %}"><i class="fa-regular fa-pen-to-square"></i> Update</a></span>
+                            <span><a class="btn btn-primary mx-1" href="{% url 'department' department.id %}"><i class="fa-regular fa-eye"></i> View</a></span>
+                            <span><a class="btn btn-outline-secondary mx-1" href="{% url 'update_department' department.id %}"><i class="fa-regular fa-pen-to-square"></i> Update</a></span>
+                            <span><a class="btn btn-outline-danger mx-1" href="{% url 'delete_department' department.id %}"><i class="fa-solid fa-trash"></i> Delete</a></span>
                         </div>
                     {% endfor %}
                 {% else %}

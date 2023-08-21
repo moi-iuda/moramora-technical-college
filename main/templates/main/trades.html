@@ -16,10 +16,11 @@
                     <div id="background" class="col-md-3 border m-3 p-3 rounded">
                         <span class="fs-4" id="headings">{{trade.trade|safe}}</span><br>
                         <span>
-                            <a class="btn btn-primary mx-2" href="{% url 'trade_images' trade.id %}">View</a>
+                            <a class="btn btn-primary mx-1" href="{% url 'trade_images' trade.id %}">View</a>
                         </span>
                         {% if user.is_authenticated %}
-                            <span><a class="btn btn-outline-secondary mx-2" href="{% url 'update_trade' trade.id %}">Update</a></span>
+                            <span><a class="btn btn-outline-secondary mx-1" href="{% url 'update_trade' trade.id %}">Update</a></span>
+                            <span><a class="btn btn-outline-danger mx-1" href="{% url 'delete_trade' trade.id %}"><i class="fa-solid fa-trash"></i> Delete</a></span>
                         {% endif %}
                     </div>
                     {% else %}

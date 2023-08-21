@@ -192,7 +192,7 @@ def add_contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('acadcalendar_fees_contact')
     context = {'form': form}
     return render(request, 'main/forms/contact_form.html', context)
 
@@ -315,7 +315,7 @@ def update_fees(request, pk):
         if form.is_valid():
             form.save()
             return redirect('acadcalendar_fees_contact')
-    context = {'form': form, "fee": fee}
+    context = {'form': form}
     return render(request, 'main/forms/fees_form.html', context)
 
 
@@ -346,7 +346,7 @@ def update_contact(request, pk):
         form = ContactForm(request.POST, instance=contact)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('acadcalendar_fees_contact')
     context = {'form': form, 'contact': contact}
     return render(request, 'main/forms/contact_form.html', context)
 
@@ -448,3 +448,53 @@ def update_trade_image(request, pk):
             return redirect('trades')
     context = {'form': form, 'trade_image': trade_image}
     return render(request, 'main/forms/trade_image_form.html', context)
+
+
+@login_required(login_url='login_user')
+def delete_department(request, pk):
+    object = Department.objects.get(id=pk)
+    if request.method == "POST":
+        object.delete()
+        return redirect('departments')
+    context = {'object': object}
+    return render(request, 'main/delete.html', context)
+
+
+@login_required(login_url='login_user')
+def delete_programme(request, pk):
+    object = Programme.objects.get(id=pk)
+    if request.method == "POST":
+        object.delete()
+        return redirect('programmes')
+    context = {'object': object}
+    return render(request, 'main/delete.html', context)
+
+
+@login_required(login_url='login_user')
+def delete_latest_update(request, pk):
+    object = LatestUpdate.objects.get(id=pk)
+    if request.method == "POST":
+        object.delete()
+        return redirect('latest_updates')
+    context = {'object': object}
+    return render(request, 'main/delete.html', context)
+
+
+@login_required(login_url='login_user')
+def delete_notice(request, pk):
+    object = Notice.objects.get(id=pk)
+    if request.method == "POST":
+        object.delete()
+        return redirect('notices')
+    context = {'object': object}
+    return render(request, 'main/delete.html', context)
+
+
+@login_required(login_url='login_user')
+def delete_trade(request, pk):
+    object = Trade.objects.get(id=pk)
+    if request.method == "POST":
+        object.delete()
+        return redirect('trades')
+    context = {'object': object}
+    return render(request, 'main/delete.html', context)

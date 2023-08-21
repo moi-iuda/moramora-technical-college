@@ -26,8 +26,9 @@
                         {% endif %}
                         <p class="fs-3">{{programme.prog_name}}</p>
                         <p>{{programme.prog_description|safe|truncatewords:20}}</p>
-                        <span><a class="btn btn-primary mx-2" href="{% url 'programme' programme.id %}"><i class="fa-regular fa-eye"></i> View</a></span>
-                        <span><a class="btn btn-outline-secondary mx-2" href="{% url 'update_programme' programme.id %}"><i class="fa-regular fa-pen-to-square"></i> Update</a></span>
+                        <span><a class="btn btn-primary mx-1" href="{% url 'programme' programme.id %}"><i class="fa-regular fa-eye"></i> View</a></span>
+                        <span><a class="btn btn-outline-secondary mx-1" href="{% url 'update_programme' programme.id %}"><i class="fa-regular fa-pen-to-square"></i> Update</a></span>
+                        <span><a class="btn btn-outline-danger mx-1" href="{% url 'delete_programme' programme.id %}"><i class="fa-solid fa-trash"></i> Delete</a></span>
                     </div>
                 {% endfor %}
             {% else %}
@@ -40,7 +41,7 @@
                 {% for programme in programmes %}
                     {% if programme.is_active %}
                         <div id="background" class="col-md-5 rounded border m-3 p-3">
-                            <p class="fs-3">{{programme.dept}}</p>
+                            <p class="fs-3">{{programme.prog_name}}</p>
                             <p>{{programme.prog_description|safe|truncatewords:20}}</p>
                             <span><a class="btn btn-primary" href="{% url 'programme' programme.id %}">View</a></span>
                         </div>

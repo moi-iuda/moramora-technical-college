@@ -4,14 +4,14 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 {% block content %}
-<br>
-<p class="display-1">Academic Calendar</p>
-<form class="col-md-6" action="" method="POST">
-    {% csrf_token %}
-        {{ form.media }}
-        {{ form.as_p }}
-        <input class="btn btn-primary mx-3" type="Submit" value="Save">
-        <a class="btn btn-outline-secondary" href="{% url 'acadcalendar_fees_contact' %}">Back</a>
+    <br>
+    <p class="display-1">Academic Calendar</p>
+    <form class="col-md-6" action="" method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <input class="btn btn-primary mx-3" type="Submit" value="Save">
+            <a class="btn btn-outline-secondary" href="{% url 'acadcalendar_fees_contact' %}">Back</a>
     </form>
     <br>
 {% endblock content %}
