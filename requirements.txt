@@ -11,6 +11,7 @@ fontawesomefree==6.4.0
 gunicorn==21.1.0
 packaging==23.1
 Pillow==10.0.0
+psycopg2==2.9.7
 pydantic==2.0.3
 pydantic_core==2.3.0
 soupsieve==2.4.1
