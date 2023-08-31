@@ -96,10 +96,11 @@ WSGI_APPLICATION = 'moramora.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'moramora',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': '$tileS_11073',
-        'PORT': 5433
+        'PASSWORD': 'pypAn0jQ82P3Jcpi0wPl',
+        'HOST': 'containers-us-west-61.railway.app',
+        'PORT': 7270
 
     }
 }
