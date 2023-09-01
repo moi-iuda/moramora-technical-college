@@ -23,8 +23,8 @@ def login_user(request):
         return redirect('home')
 
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get(['username'])
+        password = request.POST.get(['password'])
 
         try:
             user = User.objects.get(username=username)
