@@ -4,7 +4,7 @@ from .forms import *
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 
 
@@ -15,6 +15,7 @@ def handler404(request, exception):
     return render(request, 'main/error_handling.html')
 
 
+@csrf_protect
 def login_user(request):
     """
     Authenticates users.
