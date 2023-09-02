@@ -4,7 +4,6 @@ from .forms import *
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 
 
@@ -15,7 +14,6 @@ def handler404(request, exception):
     return render(request, 'main/error_handling.html')
 
 
-@csrf_protect
 def login_user(request):
     """
     Authenticates users.
@@ -24,8 +22,8 @@ def login_user(request):
         return redirect('home')
 
     if request.method == 'POST':
-        username = request.POST.get(['username'])
-        password = request.POST.get(['password'])
+        username = request.POST['username']
+        password = request.POST['password']
 
         try:
             user = User.objects.get(username=username)
