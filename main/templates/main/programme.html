@@ -11,7 +11,7 @@
             <img src="{% static 'images/logo.png' %}" alt="logo">
         </div>
         <div id="background" class="container fw-bold">
-            <span><h1 class="display-1">{{programme.prog_name|safe}}</h1></span>
+            <span><p class="display-4">{{programme.prog_name|safe}}</p></span>
             <span>Code: {{programme.prog_code|safe}} | </span>
             <span>Duration: {{programme.prog_duration|safe}} year(s) | </span>
             <span>NQF Level: {{programme.nqf|safe}} | </span>
@@ -23,11 +23,11 @@
             <hr>
         </div>
         <div class="container">
-            <h1>Programme Description</h1>
+            <p class="fs-1">Programme Description</p>
             <p>{{programme.prog_description|safe}}</p>
         </div>
         <div class="container">
-            <h1>Programme Requirements</h1>
+            <p class="fs-1">Programme Requirements</p>
             <p>{{programme.prog_requirement|safe}}</p>
         </div>
     </div>

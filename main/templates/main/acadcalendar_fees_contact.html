@@ -66,8 +66,8 @@
         <div class="text-center">
             {% if request.user.is_authenticated %}
             <span>
-                <a href="{% url 'update_fees' fee.id %} class=" m-3 rounded-pill btn btn-secondary"><i
-                        class="fa-regular fa-pen-to-square"></i> Update</a>
+                <a href="{% url 'update_fees' fee.id %} class=" class="m-3 rounded-pill btn btn-secondary"><i
+                                class="fa-regular fa-pen-to-square"></i> Update</a>
             </span>
             {% endif %}
         </div>

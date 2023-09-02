@@ -13,7 +13,7 @@
         <br>
         <div id="background" class="container fw-bold">
             <span>
-                <h1 class="display-1">{{department.dept|safe}}</h1>
+                <p class="display-4">{{department.dept|safe}}</p>
                 {% if request.user.is_authenticated %}
                 <div><a href="{% url 'update_department' department.id %}" class="card-link"><i class="fa-regular fa-pen-to-square"></i>
                 Update</a></div>
@@ -22,20 +22,20 @@
             <hr>
         </div>
         <div class="container">
-            <h1>About the Department</h1>
+            <p class="fs-1">About the Department</p>
             <p>{{department.desc|safe}}</p>
         </div>
         <div class="container">
-            <h1 class="fs-2">
+            <p class="fs-1">
                 Programmes offered under this Department
-            </h1>
+            </p>
             <!-- check if this department have any programmes -->
             {% if department.programme_set.all %}
                 <!-- if there is any, it loops through to display them -->
                 {% for programme in department.programme_set.all %}
-                    <ol>
-                        <li><a href="{% url 'programme' programme.id %}">{{programme.prog_name}}</a></li>
-                    </ol>
+                    <p class="fs-4">
+                        <a class="text-decoration-none" href="{% url 'programme' programme.id %}">{{programme.prog_name}}</a>
+                    </p>
                 {% endfor %}
             {% else %}
                     <!-- if there is no programme it displays this message -->
