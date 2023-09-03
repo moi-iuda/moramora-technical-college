@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'lfhjsdax#aqasdfasdfwzrfguhf%dwvbhytflsdnfsduweirad-x*%am%tp$$+@j**5&*eqbpe_fk40ms*4yl1q8e+-1cn)en@8ne'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app']

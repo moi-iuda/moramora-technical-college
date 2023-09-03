@@ -19,7 +19,7 @@
                 {% if departments %}
                     {% for department in departments %}
                         <div id="background" class="col-lg-5 rounded border m-3 p-3">
-                            {% if if programme.is_active == False %}
+                            {% if programme.is_active == False %}
                                 <p id="deactivate"><strong>Status:</strong> Deactivated</p>
                             {% endif %}
                             <p class="fs-3">{{department.dept}}</p>
