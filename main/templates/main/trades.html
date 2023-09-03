@@ -13,7 +13,7 @@
             {% if trades %}
                 {% for trade in trades %}
                     {% if trade.is_active %}
-                    <div id="background" class="col-md-3 border m-3 p-3 rounded">
+                    <div id="background" class="col-lg-3 border m-3 p-3 rounded">
                         <span class="fs-4" id="headings">{{trade.trade|safe}}</span><br>
                         <span>
                             <a class="btn btn-primary mx-1" href="{% url 'trade_images' trade.id %}">View</a>

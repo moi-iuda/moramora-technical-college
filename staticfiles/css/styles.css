@@ -17,3 +17,7 @@ h1, #headings, .container{
 #background{
     background-color: #E9F7EF;
 }
+
+#deactivate{
+    color: red;
+}

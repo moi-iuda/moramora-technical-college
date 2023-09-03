@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-    Departments
+    Our Departments
 {% endblock title %}
 {% block content %}
     <div class="container border">
@@ -18,11 +18,9 @@
             {% if user.is_authenticated %}
                 {% if departments %}
                     {% for department in departments %}
-                        <div id="background" class="col-md-5 rounded border m-3 p-3">
-                            {% if department.is_active %}
-                                <p><strong>Status:</strong> Active</p>
-                            {% else %}
-                                <p><strong>Status:</strong> Deactivated</p>
+                        <div id="background" class="col-lg-5 rounded border m-3 p-3">
+                            {% if if programme.is_active == False %}
+                                <p id="deactivate"><strong>Status:</strong> Deactivated</p>
                             {% endif %}
                             <p class="fs-3">{{department.dept}}</p>
                             <p>{{department.desc|safe|truncatewords:20}}</p>
@@ -40,7 +38,7 @@
                 {% if departments %}
                     {% for department in departments %}
                         {% if department.is_active %}
-                            <div id="background" class="col-md-5 rounded border m-3 p-3">
+                            <div id="background" class="col-lg-5 rounded border m-3 p-3">
                                 <p class="fs-3">{{department.dept}}</p>
                                 <p>{{department.desc|safe|truncatewords:20}}</p>
                                 <span><a class="btn btn-primary" href="{% url 'department' department.id %}">View</a></span>

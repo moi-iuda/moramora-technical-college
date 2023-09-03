@@ -15,7 +15,7 @@
         </div>
         <h1 class="fs-1" style="color: #145A32">Welcome to</h1>
         {% if institution.inst_name %}
-            <p class="display-1 fw-bold m-auto py-4" style="color: #FFF200; font-size: 6rem;">{{ institution.inst_name|safe }}</p>
+            <p class="display-1 fw-bold m-auto py-4">{{ institution.inst_name|safe }}</p>
         {% else %}
             <p><i>No information to display</i></p>
         {% endif %}

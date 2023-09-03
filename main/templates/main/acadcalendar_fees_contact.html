@@ -104,36 +104,23 @@
     <div class="row justify-content-center">
         <p class="display-4 text-center">Our Contacts</p>
         
-        <table class="table table-striped w-75" style="color: #145A32">
-            {% if contacts %}
-                <tr>
-                    <th>Name</th>
-                    <th>Designation</th>
-                    <th>Postal Address</th>
-                    <th>Email</th>
-                    <th>Phone Numbers</th>
-                </tr>
-                {% for contact in contacts %}
-                    {% if contact.is_active %}
-                        <tr>
-                            <td>
-                                {% if request.user.is_authenticated %}
-                                    <a href="{% url 'update_contact' contact.id %}">{{contact.contact_person}}</a>
-                                {% else %}
-                                    {{contact.contact_person}}
-                                {% endif %}
-                            </td>
-                            <td>{{contact.designation}}</td>
-                            <td>{{contact.postal_address}}</td>
-                            <td>{{contact.email}}</td>
-                            <td>{{contact.landline}}, {{contact.digicel}}, {{contact.telikom}}, {{contact.vodaphone}}</td>
-                        </tr>
+        {% if contacts %}
+            {% for contact in contacts %}
+                <div id="background" class="col-lg-5 rounded border m-3 p-3">
+                    {% if request.user.is_authenticated %}
+                        <span class="fs-3"><a href="{% url 'update_contact' contact.id %}">{{contact.contact_person}}</a></span><br>
+                    {% else %}
+                        <span class="fs-3">{{contact.contact_person}}</span><br>
                     {% endif %}
-                {% endfor %}
-            {% else %}
-                <p class='text-center'><i>No information to display</i></p>
-            {% endif %} 
-        </table>
+                    <span>{{contact.designation}}</span><br>
+                    <span>{{contact.postal_address}}</span><br>
+                    <span>{{contact.email}}</span><br>
+                    <span>{{contact.digicel}}, {{contact.telikom}}, {{contact.vodaphone}}</span><br>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class='text-center'><i>No information to display</i></p>
+        {% endif %} 
     </div>
     <br>
 </div>
