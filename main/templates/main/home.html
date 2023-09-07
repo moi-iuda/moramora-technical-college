@@ -2,76 +2,78 @@
 {% load static %}
 {% block content %}
 <div class="container border">
-    <div class="row text-center p-5" style="background-color:#7DCEA0;">
-        <img class="m-auto" style="width: 20rem; border-radius: 50%;" src="{% static 'images/logo.png' %}" alt="logo">
-        <div>
-            {% if request.user.is_authenticated %}
-                {% if institution %}
-                <span>
-                    <a href="{% url 'update_institution' institution.id %}" class=" m-3 rounded-pill btn btn-light"><i class="fa-regular fa-pen-to-square"></i> Update</a>
-                </span>
+    <main>
+        <div class="row text-center p-5" style="background-color:#7DCEA0;">
+            <img class="m-auto" style="width: 20rem; border-radius: 50%;" src="{% static 'images/logo.png' %}" alt="logo">
+            <div>
+                {% if request.user.is_authenticated %}
+                    {% if institution %}
+                    <span>
+                        <a href="{% url 'update_institution' institution.id %}" class=" m-3 rounded-pill btn btn-light"><i class="fa-regular fa-pen-to-square"></i> Update</a>
+                    </span>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        </div>
-        <h1 class="fs-1" style="color: #145A32">Welcome to</h1>
-        {% if institution.inst_name %}
-            <p class="display-1 fw-bold m-auto py-4">{{ institution.inst_name|safe }}</p>
-        {% else %}
-            <p><i>No information to display</i></p>
-        {% endif %}
-        <h1 class="fs-1" style="color: #145A32">website</h1>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 align-item-center text-center py-5">
-            <h1 class="fs-1">About Us</h1>
-            {% if institution.about %}
-                <p class="fs-5">{{institution.about|safe}}</p>
+            </div>
+            <h1 class="fs-1" style="color: #145A32">Welcome to</h1>
+            {% if institution.inst_name %}
+                <p class="display-1 fw-bold m-auto py-4">{{ institution.inst_name|safe }}</p>
             {% else %}
                 <p><i>No information to display</i></p>
             {% endif %}
+            <h1 class="fs-1" style="color: #145A32">website</h1>
         </div>
-        <div class="col-lg-6 py-5 m-auto">
-            {% if institution.img.url %}
-                <img class="img-fluid rounded" src="{{ institution.img.url }}" alt="a picture">
-            {% else %}
-                <p><i>No image to display</i></p>
-            {% endif %}
+        <div class="row">
+            <div class="col-lg-6 align-item-center text-center py-5">
+                <h1 class="fs-1">About Us</h1>
+                {% if institution.about %}
+                    <p class="fs-5">{{institution.about|safe}}</p>
+                {% else %}
+                    <p><i>No information to display</i></p>
+                {% endif %}
+            </div>
+            <div class="col-lg-6 py-5 m-auto">
+                {% if institution.img.url %}
+                    <img class="img-fluid rounded" src="{{ institution.img.url }}" alt="a picture">
+                {% else %}
+                    <p><i>No image to display</i></p>
+                {% endif %}
+            </div>
         </div>
-    </div>
-    <div class="col">
-        <div class="row text-center p-5" style="background-color:#7DCEA0;">
-            <h1 class="fs-1" style="color: #FFF200;">Our Vision</h1>
-            {% if institution.vision %}
-                <p class="fs-5">{{institution.vision|safe}}</p>
-            {% else %}
-                <p><i>No vision to display</i></p>
-            {% endif %}
+        <div class="col">
+            <div class="row text-center p-5" style="background-color:#7DCEA0;">
+                <h1 class="fs-1" style="color: #FFF200;">Our Vision</h1>
+                {% if institution.vision %}
+                    <p class="fs-5">{{institution.vision|safe}}</p>
+                {% else %}
+                    <p><i>No vision to display</i></p>
+                {% endif %}
+            </div>
+            <div class="row text-center p-5">
+                <h1 class="fs-1">Our Mission</h1>
+                {% if institution.mission %}
+                    <p class="fs-5">{{institution.mission|safe}}</p>
+                {% else %}
+                    <p><i>No mission to display</i></p>
+                {% endif %}
+            </div>
         </div>
-        <div class="row text-center p-5">
-            <h1 class="fs-1">Our Mission</h1>
-            {% if institution.mission %}
-                <p class="fs-5">{{institution.mission|safe}}</p>
-            {% else %}
-                <p><i>No mission to display</i></p>
-            {% endif %}
+        <div class="row justify-content-around">
+            <div id="background" class="col-md-3 border rounded text-center p-3 m-2">
+                <a href="{% url 'latest_updates' %}" id="headings">
+                    <h1 class="fs-2 m-auto">Read Updates</h1>
+                </a>
+            </div>
+            <div id="background" class="col-md-3 border rounded text-center p-3 m-2">
+                <a href="{% url 'notices' %}" id="headings">
+                    <h1 class="fs-2 m-auto">Read Notices</h1>
+                </a>
+            </div>
+            <div id="background" class="col-md-3 border rounded text-center p-3 m-2">
+                <a href="{% url 'trades' %}" id="headings">
+                    <h1 class="fs-2 m-auto">View Images</h1>
+                </a>
+            </div>
         </div>
-    </div>
-    <div class="row justify-content-around">
-        <div id="background" class="col-md-3 border rounded text-center p-3 m-2">
-            <a href="{% url 'latest_updates' %}" id="headings">
-                <h1 class="fs-2 m-auto">Read Updates</h1>
-            </a>
-        </div>
-        <div id="background" class="col-md-3 border rounded text-center p-3 m-2">
-            <a href="{% url 'notices' %}" id="headings">
-                <h1 class="fs-2 m-auto">Read Notices</h1>
-            </a>
-        </div>
-        <div id="background" class="col-md-3 border rounded text-center p-3 m-2">
-            <a href="{% url 'trades' %}" id="headings">
-                <h1 class="fs-2 m-auto">View Images</h1>
-            </a>
-        </div>
-    </div>
+    </main>
 </div>
 {% endblock content %}
