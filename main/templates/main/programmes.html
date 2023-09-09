@@ -18,7 +18,7 @@
         {% if user.is_authenticated %}
             {% if programmes %}
                 {% for programme in programmes %}
-                    <div id="background" class="col-lg-5 rounded border m-3 p-3">
+                    <div class="cards col-lg-5 border rounded">
                         {% if programme.is_active == False %}
                             <p id="deactivate"><strong>Status:</strong> Deactivated</p>
                         {% endif %}
@@ -38,7 +38,7 @@
             {% if programmes %}
                 {% for programme in programmes %}
                     {% if programme.is_active %}
-                        <div id="background" class="col-lg-5 rounded border m-3 p-3">
+                        <div class="cards col-lg-5 border rounded">
                             <p class="fs-3">{{programme.prog_name}}</p>
                             <p>{{programme.prog_description|safe|truncatewords:20}}</p>
                             <span><a class="btn btn-primary" href="{% url 'programme' programme.id %}">View</a></span>

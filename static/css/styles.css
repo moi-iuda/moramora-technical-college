@@ -14,10 +14,14 @@ h1, #headings, .container{
     color: #FFF200;
 }
 
-#background{
-    background-color: #E9F7EF;
-}
-
 #deactivate{
     color: red;
+    font-weight: bold;
+}
+
+.cards{
+    padding: 1em;
+    margin: 1em;
+    background-color: #E9F7EF;
+    box-shadow: 5px 5px 5px #14542A;
 }

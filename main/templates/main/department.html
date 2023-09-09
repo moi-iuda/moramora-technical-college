@@ -22,20 +22,20 @@
             <hr>
         </div>
         <div class="container">
-            <p class="fs-1">About the Department</p>
+            <p class="fs-2">About the Department</p>
             <p>{{department.desc|safe}}</p>
         </div>
         <div class="container">
-            <p class="fs-1">
-                Programmes offered under this Department
+            <p class="fs-2">
+                Programmes we offer:
             </p>
             <!-- check if this department have any programmes -->
             {% if department.programme_set.all %}
                 <!-- if there is any, it loops through to display them -->
                 {% for programme in department.programme_set.all %}
-                    <p class="fs-4">
-                        <a class="text-decoration-none" href="{% url 'programme' programme.id %}">{{programme.prog_name}}</a>
-                    </p>
+                    <span class="fs-5">
+                        <a class="text-decoration-none" href="{% url 'programme' programme.id %}">{{programme.prog_name}}</a><br>
+                    </span>
                 {% endfor %}
             {% else %}
                     <!-- if there is no programme it displays this message -->

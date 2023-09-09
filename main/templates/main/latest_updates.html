@@ -18,7 +18,7 @@
         {% if user.is_authenticated %}
             {% if latest_updates %}
                 {% for latest_update in latest_updates %}
-                    <div id="background" class="col-lg-5 rounded border m-3 p-3">
+                    <div class="card col-lg-5 border rounded">
                         {% if latest_update.is_active %}
                             <p><strong>Status:</strong> Active</p>
                         {% else %}
@@ -39,7 +39,7 @@
         {% else %}
             {% for latest_update in latest_updates %}
                 {% if latest_update.is_active %}
-                    <div id="background" class="col-lg-5 rounded border m-3 p-3">
+                    <div id="background" class="cards col-lg-5 border rounded">
                         <p class="fs-3">{{latest_update.title}}</p>
                         <p>{{latest_update.intro|safe|truncatewords:20}}</p>
                         <span><a class="btn btn-primary" href="{% url 'latest_update' latest_update.id %}">View</a></span>

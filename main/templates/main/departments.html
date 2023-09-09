@@ -18,7 +18,7 @@
             {% if user.is_authenticated %}
                 {% if departments %}
                     {% for department in departments %}
-                        <div id="background" class="col-lg-5 rounded border m-3 p-3">
+                        <div class="cards col-lg-5 border rounded">
                             {% if department.is_active == False %}
                                 <p id="deactivate"><strong>Status:</strong> Deactivated</p>
                             {% endif %}
@@ -38,7 +38,7 @@
                 {% if departments %}
                     {% for department in departments %}
                         {% if department.is_active %}
-                            <div id="background" class="col-lg-5 rounded border m-3 p-3">
+                            <div class="cards col-lg-5 border rounded">
                                 <p class="fs-3">{{department.dept}}</p>
                                 <p>{{department.desc|safe|truncatewords:20}}</p>
                                 <span><a class="btn btn-primary" href="{% url 'department' department.id %}">View</a></span>
