@@ -69,6 +69,10 @@ class AcademicCalendarForm(ModelForm):
         self.fields['sem_two_cls_ends'].widget = forms.widgets.DateInput(
             attrs={'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)', 'class': 'form-control'})
 
+        # for name, field in self.fields.items():
+        #     field.widget = forms.widgets.DateInput(
+        #         {'class': 'form-control', 'type': 'date', 'placeholder': 'yyyy-mm-dd (DOB)'})
+
 
 class FeesForm(ModelForm):
     class Meta:
@@ -84,15 +88,9 @@ class FeesForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['year'].widget.attrs.update({'class': 'form-control'})
-        self.fields['hecas_resid'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['hecas_non_resid'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['ss_resid'].widget.attrs.update({'class': 'form-control'})
-        self.fields['ss_non_resid'].widget.attrs.update(
-            {'class': 'form-control'})
+        super(FeesForm, self).__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control'})
         self.fields['is_active'].widget.attrs.update({'class': 'checkbox'})
 
 
@@ -105,24 +103,12 @@ class ContactForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['inst'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['contact_person'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['designation'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['postal_address'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['email'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['landline'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['digicel'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['telikom'].widget.attrs.update({'class': 'form-control'})
-        self.fields['vodaphone'].widget.attrs.update(
-            {'class': 'form-control'})
+        super(ContactForm, self).__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs.update(
+                {'class': 'form-control'})
+
+        self.fields['is_active'].widget.attrs.update({'class': 'checkbox'})
 
 
 class InstitutionForm(ModelForm):
@@ -135,15 +121,9 @@ class InstitutionForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['inst_name'].widget.attrs.update({'class': 'form-control'})
-        self.fields['about'].widget.attrs.update({'class': 'form-control'})
-        self.fields['vision'].widget.attrs.update({'class': 'form-control'})
-        self.fields['mission'].widget.attrs.update({'class': 'form-control'})
-        self.fields['img'].widget.attrs.update(
-            {'class': 'form-control', 'type': 'file'})
-        self.fields['is_active'].widget.attrs.update(
-            {'class': 'form-check-input', 'type': 'checkbox'})
+        super(InstitutionForm, self).__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widgets.attrs.update({'class': 'form-control'})
 
 
 class LatestUpdateForm(ModelForm):
@@ -159,16 +139,10 @@ class LatestUpdateForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['inst'].widget.attrs.update({'class': 'form-control'})
-        self.fields['title'].widget.attrs.update({'class': 'form-control'})
-        self.fields['intro'].widget.attrs.update({'class': 'form-control'})
-        self.fields['main_body'].widget.attrs.update({'class': 'form-control'})
-        self.fields['outro'].widget.attrs.update({'class': 'form-control'})
-        self.fields['img'].widget.attrs.update(
-            {'class': 'form-control', 'type': 'file'})
-        self.fields['is_active'].widget.attrs.update(
-            {'class': 'form-check-input', 'type': 'checkbox'})
+        super(LatestUpdateForm, self).__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control'})
+        self.fields['is_active'].widget.attrs.update({'class': 'checkbox'})
 
 
 class NoticeForm(ModelForm):
@@ -184,16 +158,10 @@ class NoticeForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['prog'].widget.attrs.update({'class': 'form-control'})
-        self.fields['title'].widget.attrs.update({'class': 'form-control'})
-        self.fields['intro'].widget.attrs.update({'class': 'form-control'})
-        self.fields['img'].widget.attrs.update(
-            {'class': 'form-control', 'type': 'file'})
-        self.fields['main_body'].widget.attrs.update({'class': 'form-control'})
-        self.fields['outro'].widget.attrs.update({'class': 'form-control'})
-        self.fields['is_active'].widget.attrs.update(
-            {'class': 'form-check-input', 'type': 'checkbox'})
+        super(NoticeForm, self).__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control'})
+        self.fields['is_active'].widget.attrs.update({'class': 'checkbox'})
 
 
 class ProgrammeForm(ModelForm):
@@ -213,20 +181,10 @@ class ProgrammeForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['dept'].widget.attrs.update({'class': 'form-control'})
-        self.fields['inst'].widget.attrs.update({'class': 'form-control'})
-        self.fields['prog_name'].widget.attrs.update({'class': 'form-control'})
-        self.fields['nqf'].widget.attrs.update({'class': 'form-control'})
-        self.fields['prog_code'].widget.attrs.update({'class': 'form-control'})
-        self.fields['prog_duration'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['prog_quota'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['prog_description'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['is_active'].widget.attrs.update(
-            {'class': 'form-check-input', 'type': 'checkbox'})
+        super(ProgrammeForm, self).__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control'})
+        self.fields['is_active'].widget.attrs.update({'class': 'checkbox'})
 
 
 class TradeForm(ModelForm):
@@ -252,14 +210,10 @@ class InstitutionForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['inst_name'].widget.attrs.update({'class': 'form-control'})
-        self.fields['about'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['img'].widget.attrs.update(
-            {'class': 'form-control', 'type': 'file'})
-        self.fields['is_active'].widget.attrs.update(
-            {'class': 'form-check-input', 'type': 'checkbox'})
+        super(InstitutionForm, self).__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control'})
+        self.fields['is_active'].widget.attrs.update({'class': 'checkbox'})
 
 
 class TradeImageLibraryForm(ModelForm):
@@ -273,11 +227,7 @@ class TradeImageLibraryForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['trade'].widget.attrs.update({'class': 'form-control'})
-        self.fields['title'].widget.attrs.update(
-            {'class': 'form-control'})
-        self.fields['img'].widget.attrs.update(
-            {'class': 'form-control', 'type': 'file'})
-        self.fields['desc'].widget.attrs.update(
-            {'class': 'form-control'})
+        super(TradeImageLibraryForm, self).__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control'})
+        self.fields['is_active'].widget.attrs.update({'class': 'checkbox'})
