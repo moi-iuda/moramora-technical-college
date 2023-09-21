@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container border">
     <main>
-        <div class="row text-center p-5" style="background-color:#7DCEA0;">
+        <div class="background row text-center p-5">
             <img class="m-auto" style="width: 20rem; border-radius: 50%;" src="{% static 'images/logo.png' %}" alt="logo">
             <div>
                 {% if request.user.is_authenticated %}
@@ -14,13 +14,13 @@
                     {% endif %}
                 {% endif %}
             </div>
-            <h1 class="fs-1" style="color: #145A32">Welcome to</h1>
+            <h1 class="fs-1">Welcome to</h1>
             {% if institution.inst_name %}
                 <p class="display-1 fw-bold m-auto py-4">{{ institution.inst_name|safe }}</p>
             {% else %}
                 <p><i>No information to display</i></p>
             {% endif %}
-            <h1 class="fs-1" style="color: #145A32">website</h1>
+            <h1 class="fs-1">website</h1>
         </div>
         <div class="row">
             <div class="col-lg-6 align-item-center text-center py-5">
@@ -40,8 +40,8 @@
             </div>
         </div>
         <div class="col">
-            <div class="row text-center p-5" style="background-color:#7DCEA0;">
-                <h1 class="fs-1" style="color: #FFF200;">Our Vision</h1>
+            <div class="background row text-center p-5">
+                <h1 class="fs-1">Our Vision</h1>
                 {% if institution.vision %}
                     <p class="fs-5">{{institution.vision|safe}}</p>
                 {% else %}

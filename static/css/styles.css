@@ -1,13 +1,10 @@
 body{
-    font-family: 'roboto'
-}
-
-h1{
-    font-family: 'Allura'
-}
-
-h1, #headings, .container{
+    font-family: 'roboto';
     color: #14542A;
+}
+
+h1, #headings{
+    font-family: 'Allura';
 }
 
 #navbar-links{
@@ -24,4 +21,12 @@ h1, #headings, .container{
     margin: 1em;
     background-color: #E9F7EF;
     box-shadow: 5px 5px 5px #14542A;
+}
+
+.background{
+    background-color:#E9F7EF;
+}
+
+a{
+    text-decoration: none;
 }
