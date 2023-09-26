@@ -19,12 +19,11 @@ h1, #headings{
 .cards{
     padding: 1em;
     margin: 1em;
-    background-color: #E9F7EF;
-    box-shadow: 5px 5px 5px #14542A;
+    background-color: #FFFCC8;
 }
 
 .background{
-    background-color:#E9F7EF;
+    background-color:#FFFCC8;
 }
 
 a{
